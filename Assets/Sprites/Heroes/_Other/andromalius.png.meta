@@ -1,0 +1,692 @@
+fileFormatVersion: 2
+guid: ccd80f73c5222424e85a9f28131237f0
+timeCreated: 1469717562
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: andromalius_0
+    21300002: andromalius_1
+    21300004: andromalius_2
+    21300006: andromalius_3
+    21300008: andromalius_4
+    21300010: andromalius_5
+    21300012: andromalius_6
+    21300014: andromalius_7
+    21300016: andromalius_8
+    21300018: andromalius_9
+    21300020: andromalius_10
+    21300022: andromalius_11
+    21300024: andromalius_12
+    21300026: andromalius_13
+    21300028: andromalius_14
+    21300030: andromalius_15
+    21300032: andromalius_16
+    21300034: andromalius_17
+    21300036: andromalius_18
+    21300038: andromalius_19
+    21300040: andromalius_20
+    21300042: andromalius_21
+    21300044: andromalius_22
+    21300046: andromalius_23
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: andromalius_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 176
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.5, y: 44}
+        - {x: -28.5, y: -8}
+        - {x: -21.5, y: -8}
+        - {x: -28.5, y: -18}
+        - {x: -28.5, y: -25}
+        - {x: -27.5, y: -26}
+        - {x: -24.5, y: -25}
+        - {x: -10.5, y: -37}
+        - {x: -8.5, y: -37}
+        - {x: -6.5, y: -35}
+        - {x: -3.5, y: -41}
+        - {x: 0.5, y: -44}
+        - {x: 2.5, y: -44}
+        - {x: 6.5, y: -41}
+        - {x: 7.5, y: -38}
+        - {x: 7.5, y: -31}
+        - {x: 7.5, y: -41}
+        - {x: 9.5, y: -44}
+        - {x: 25.5, y: -44}
+        - {x: 27.5, y: -35}
+        - {x: 27.5, y: 44}
+    - name: andromalius_1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 176
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.5, y: 44}
+        - {x: -28.5, y: -31}
+        - {x: -25.5, y: -44}
+        - {x: 4.5, y: -44}
+        - {x: 7.5, y: -38}
+        - {x: 7.5, y: -31}
+        - {x: 7.5, y: -41}
+        - {x: 10.5, y: -44}
+        - {x: 22.5, y: -44}
+        - {x: 27.5, y: -19}
+        - {x: 27.5, y: 43}
+        - {x: 26.5, y: 44}
+    - name: andromalius_2
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 176
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: 44}
+        - {x: -28.5, y: 42}
+        - {x: -28.5, y: -25}
+        - {x: -22.5, y: -24}
+        - {x: -17.5, y: -22}
+        - {x: -18.5, y: -28}
+        - {x: -19.5, y: -44}
+        - {x: 26.5, y: -44}
+        - {x: 27.5, y: -39}
+        - {x: 27.5, y: 44}
+    - name: andromalius_3
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 176
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.5, y: 44}
+        - {x: -28.5, y: 38}
+        - {x: -28.5, y: -31}
+        - {x: -18.5, y: -44}
+        - {x: 4.5, y: -44}
+        - {x: 7.5, y: -41}
+        - {x: 8.5, y: -38}
+        - {x: 8.5, y: -30}
+        - {x: 8.5, y: -41}
+        - {x: 9.5, y: -44}
+        - {x: 19.5, y: -44}
+        - {x: 24.5, y: -42}
+        - {x: 27.5, y: -26}
+        - {x: 27.5, y: 42}
+        - {x: 26.5, y: 44}
+    - name: andromalius_4
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 176
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: 44}
+        - {x: -28.5, y: 39}
+        - {x: -28.5, y: -36}
+        - {x: -22.5, y: -40}
+        - {x: -13.5, y: -37}
+        - {x: -11.5, y: -35}
+        - {x: -4.5, y: -41}
+        - {x: 0.5, y: -44}
+        - {x: 4.5, y: -44}
+        - {x: 8.5, y: -38}
+        - {x: 7.5, y: -30}
+        - {x: 6.5, y: -25}
+        - {x: 7.5, y: -29}
+        - {x: 8.5, y: -41}
+        - {x: 10.5, y: -44}
+        - {x: 24.5, y: -44}
+        - {x: 27.5, y: -16}
+        - {x: 27.5, y: 42}
+        - {x: 23.5, y: 44}
+    - name: andromalius_5
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 176
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.5, y: 44}
+        - {x: -28.5, y: 44}
+        - {x: -28.5, y: -28}
+        - {x: -24.5, y: -27}
+        - {x: -20.5, y: -25}
+        - {x: -17.5, y: -36}
+        - {x: -11.5, y: -38}
+        - {x: -4.5, y: -29}
+        - {x: -2.5, y: -26}
+        - {x: -2.5, y: -21}
+        - {x: -2.5, y: -29}
+        - {x: -6.5, y: -36}
+        - {x: -2.5, y: -44}
+        - {x: 2.5, y: -44}
+        - {x: 7.5, y: -38}
+        - {x: 6.5, y: -29}
+        - {x: 7.5, y: -38}
+        - {x: 11.5, y: -44}
+        - {x: 17.5, y: -44}
+        - {x: 22.5, y: -40}
+        - {x: 27.5, y: -12}
+        - {x: 27.5, y: 43}
+    - name: andromalius_6
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 176
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25.5, y: 44}
+        - {x: -24.5, y: 44}
+        - {x: -28.5, y: 38}
+        - {x: -28.5, y: -37}
+        - {x: -15.5, y: -44}
+        - {x: -8.5, y: -44}
+        - {x: -4.5, y: -33}
+        - {x: -2.5, y: -22}
+        - {x: -6.5, y: -41}
+        - {x: -0.5, y: -44}
+        - {x: 3.5, y: -44}
+        - {x: 6.5, y: -41}
+        - {x: 7.5, y: -32}
+        - {x: 7.5, y: -38}
+        - {x: 10.5, y: -44}
+        - {x: 17.5, y: -44}
+        - {x: 20.5, y: -42}
+        - {x: 22.5, y: -39}
+        - {x: 27.5, y: -13}
+        - {x: 27.5, y: 38}
+    - name: andromalius_7
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 176
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25.5, y: 44}
+        - {x: -23.5, y: 44}
+        - {x: -28.5, y: 38}
+        - {x: -28.5, y: -29}
+        - {x: -12.5, y: -44}
+        - {x: 19.5, y: -44}
+        - {x: 22.5, y: -40}
+        - {x: 27.5, y: -12}
+        - {x: 27.5, y: 39}
+    - name: andromalius_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 88
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.5, y: 44}
+        - {x: -28.5, y: -8}
+        - {x: -21.5, y: -8}
+        - {x: -28.5, y: -18}
+        - {x: -28.5, y: -25}
+        - {x: -27.5, y: -26}
+        - {x: -24.5, y: -25}
+        - {x: -10.5, y: -37}
+        - {x: -8.5, y: -37}
+        - {x: -6.5, y: -35}
+        - {x: -3.5, y: -41}
+        - {x: 0.5, y: -44}
+        - {x: 2.5, y: -44}
+        - {x: 6.5, y: -41}
+        - {x: 7.5, y: -38}
+        - {x: 7.5, y: -31}
+        - {x: 7.5, y: -41}
+        - {x: 9.5, y: -44}
+        - {x: 23.5, y: -44}
+        - {x: 27.5, y: -27}
+        - {x: 27.5, y: 44}
+    - name: andromalius_9
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 88
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.5, y: 44}
+        - {x: -28.5, y: 38}
+        - {x: -28.5, y: -31}
+        - {x: -25.5, y: -44}
+        - {x: 4.5, y: -44}
+        - {x: 7.5, y: -38}
+        - {x: 7.5, y: -31}
+        - {x: 7.5, y: -41}
+        - {x: 10.5, y: -44}
+        - {x: 27.5, y: -44}
+        - {x: 27.5, y: 44}
+    - name: andromalius_10
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 88
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: 44}
+        - {x: -28.5, y: 39}
+        - {x: -28.5, y: -25}
+        - {x: -22.5, y: -24}
+        - {x: -17.5, y: -22}
+        - {x: -18.5, y: -28}
+        - {x: -20.5, y: -44}
+        - {x: 27.5, y: -44}
+        - {x: 27.5, y: 39}
+        - {x: 25.5, y: 44}
+    - name: andromalius_11
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 88
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27.5, y: 42}
+        - {x: 24.5, y: 44}
+        - {x: -24.5, y: 44}
+        - {x: -28.5, y: 38}
+        - {x: -28.5, y: -31}
+        - {x: -18.5, y: -44}
+        - {x: 4.5, y: -44}
+        - {x: 7.5, y: -41}
+        - {x: 8.5, y: -38}
+        - {x: 8.5, y: -30}
+        - {x: 8.5, y: -41}
+        - {x: 11.5, y: -44}
+        - {x: 16.5, y: -44}
+        - {x: 20.5, y: -39}
+        - {x: 25.5, y: -26}
+        - {x: 27.5, y: -11}
+    - name: andromalius_12
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 88
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: 44}
+        - {x: -28.5, y: 39}
+        - {x: -28.5, y: -36}
+        - {x: -22.5, y: -40}
+        - {x: -13.5, y: -37}
+        - {x: -11.5, y: -35}
+        - {x: -4.5, y: -41}
+        - {x: 0.5, y: -44}
+        - {x: 4.5, y: -44}
+        - {x: 8.5, y: -38}
+        - {x: 7.5, y: -30}
+        - {x: 6.5, y: -25}
+        - {x: 7.5, y: -29}
+        - {x: 8.5, y: -41}
+        - {x: 10.5, y: -44}
+        - {x: 25.5, y: -44}
+        - {x: 27.5, y: -19}
+        - {x: 27.5, y: 42}
+        - {x: 23.5, y: 44}
+    - name: andromalius_13
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 88
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.5, y: -26}
+        - {x: -24.5, y: -27}
+        - {x: -20.5, y: -25}
+        - {x: -17.5, y: -36}
+        - {x: -11.5, y: -38}
+        - {x: -4.5, y: -29}
+        - {x: -2.5, y: -26}
+        - {x: -2.5, y: -21}
+        - {x: -2.5, y: -29}
+        - {x: -6.5, y: -36}
+        - {x: -2.5, y: -44}
+        - {x: 2.5, y: -44}
+        - {x: 7.5, y: -38}
+        - {x: 6.5, y: -29}
+        - {x: 7.5, y: -38}
+        - {x: 11.5, y: -44}
+        - {x: 19.5, y: -44}
+        - {x: 27.5, y: -20}
+        - {x: 27.5, y: 44}
+        - {x: -28.5, y: 44}
+    - name: andromalius_14
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 88
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.5, y: 44}
+        - {x: -28.5, y: 38}
+        - {x: -28.5, y: -37}
+        - {x: -15.5, y: -44}
+        - {x: -8.5, y: -44}
+        - {x: -4.5, y: -33}
+        - {x: -2.5, y: -22}
+        - {x: -6.5, y: -41}
+        - {x: -0.5, y: -44}
+        - {x: 3.5, y: -44}
+        - {x: 6.5, y: -41}
+        - {x: 7.5, y: -32}
+        - {x: 7.5, y: -38}
+        - {x: 10.5, y: -44}
+        - {x: 23.5, y: -44}
+        - {x: 27.5, y: -16}
+        - {x: 27.5, y: 38}
+        - {x: 25.5, y: 44}
+    - name: andromalius_15
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 88
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.5, y: 44}
+        - {x: -28.5, y: -35}
+        - {x: -14.5, y: -44}
+        - {x: 27.5, y: -44}
+        - {x: 27.5, y: 44}
+    - name: andromalius_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.5, y: -44}
+        - {x: 1.5, y: -44}
+        - {x: 4.5, y: -43}
+        - {x: 4.5, y: -31}
+        - {x: 3.5, y: -26}
+        - {x: 5.5, y: -37}
+        - {x: 13.5, y: -42}
+        - {x: 28.5, y: -38}
+        - {x: 28.5, y: 44}
+        - {x: -20.5, y: 44}
+        - {x: -26.5, y: 43}
+        - {x: -26.5, y: -11}
+        - {x: -18.5, y: -44}
+        - {x: -10.5, y: -44}
+        - {x: -8.5, y: -42}
+        - {x: -8.5, y: -39}
+        - {x: -8.5, y: -41}
+    - name: andromalius_17
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 0
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.5, y: -44}
+        - {x: 24.5, y: -27}
+        - {x: 24.5, y: 42}
+        - {x: 18.5, y: 44}
+        - {x: -24.5, y: 44}
+        - {x: -24.5, y: -44}
+        - {x: -9.5, y: -44}
+        - {x: -6.5, y: -42}
+        - {x: -2.5, y: -35}
+        - {x: -2.5, y: -42}
+        - {x: -0.5, y: -44}
+    - name: andromalius_18
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 0
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19.5, y: -44}
+        - {x: 26.5, y: -19}
+        - {x: 26.5, y: 29}
+        - {x: 22.5, y: 39}
+        - {x: 18.5, y: 44}
+        - {x: -16.5, y: 44}
+        - {x: -22.5, y: 41}
+        - {x: -22.5, y: -20}
+        - {x: -17.5, y: -20}
+        - {x: -13.5, y: -17}
+        - {x: -11.5, y: -30}
+        - {x: -8.5, y: -43}
+        - {x: -5.5, y: -44}
+        - {x: 3.5, y: -44}
+        - {x: 4.5, y: -42}
+        - {x: 4.5, y: -35}
+        - {x: 10.5, y: -44}
+    - name: andromalius_19
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 0
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: 44}
+        - {x: -28.5, y: 40}
+        - {x: -28.5, y: -26}
+        - {x: -25.5, y: -38}
+        - {x: -23.5, y: -44}
+        - {x: 24.5, y: -44}
+        - {x: 27.5, y: -40}
+        - {x: 27.5, y: 44}
+    - name: andromalius_20
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 0
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3.5, y: -31}
+        - {x: 3.5, y: -27}
+        - {x: 2.5, y: -41}
+        - {x: 5.5, y: -44}
+        - {x: 12.5, y: -44}
+        - {x: 19.5, y: -36}
+        - {x: 25.5, y: -10}
+        - {x: 25.5, y: 40}
+        - {x: 22.5, y: 44}
+        - {x: -24.5, y: 44}
+        - {x: -24.5, y: -15}
+        - {x: -20.5, y: -39}
+        - {x: -10.5, y: -44}
+        - {x: -4.5, y: -44}
+        - {x: -1.5, y: -41}
+        - {x: 2.5, y: -35}
+        - {x: 2.5, y: -32}
+    - name: andromalius_21
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 0
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21.5, y: -31}
+        - {x: 25.5, y: -18}
+        - {x: 25.5, y: 40}
+        - {x: 23.5, y: 44}
+        - {x: -25.5, y: 44}
+        - {x: -25.5, y: -20}
+        - {x: -15.5, y: -44}
+        - {x: -3.5, y: -44}
+        - {x: -2.5, y: -41}
+        - {x: -1.5, y: -44}
+        - {x: 12.5, y: -44}
+    - name: andromalius_22
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 0
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: 44}
+        - {x: -25.5, y: -44}
+        - {x: 14.5, y: -44}
+        - {x: 25.5, y: -19}
+        - {x: 25.5, y: 43}
+        - {x: 21.5, y: 44}
+    - name: andromalius_23
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 0
+        width: 57
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.5, y: -31}
+        - {x: -0.5, y: -42}
+        - {x: 2.5, y: -44}
+        - {x: 26.5, y: -44}
+        - {x: 26.5, y: 44}
+        - {x: -25.5, y: 44}
+        - {x: -25.5, y: -44}
+        - {x: -3.5, y: -44}
+        - {x: -0.5, y: -42}
+        - {x: -2.5, y: -35}
+        - {x: -3.5, y: -34}
+        - {x: -3.5, y: -25}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

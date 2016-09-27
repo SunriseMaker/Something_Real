@@ -1,0 +1,801 @@
+fileFormatVersion: 2
+guid: c5d88d60de4b2d943829e3ee45e4cf48
+timeCreated: 1468506189
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Explosion1_0
+    21300002: Explosion1_1
+    21300004: Explosion1_2
+    21300006: Explosion1_3
+    21300008: Explosion1_4
+    21300010: Explosion1_5
+    21300012: Explosion1_6
+    21300014: Explosion1_7
+    21300016: Explosion1_8
+    21300018: Explosion1_9
+    21300020: Explosion1_10
+    21300022: Explosion1_11
+    21300024: Explosion1_12
+    21300026: Explosion1_13
+    21300028: Explosion1_14
+    21300030: Explosion1_15
+    21300032: Explosion1_16
+    21300034: Explosion1_17
+    21300036: Explosion1_18
+    21300038: Explosion1_19
+    21300040: Explosion1_20
+    21300042: Explosion1_21
+    21300044: Explosion1_22
+    21300046: Explosion1_23
+    21300048: Explosion1_24
+    21300050: Explosion1_25
+    21300052: Explosion1_26
+    21300054: Explosion1_27
+    21300056: Explosion1_28
+    21300058: Explosion1_29
+    21300060: Explosion1_30
+    21300062: Explosion1_31
+    21300064: Explosion1_32
+    21300066: Explosion1_33
+    21300068: Explosion1_34
+    21300070: Explosion1_35
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Explosion1_0
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 853.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.5, y: -0.16668701}
+        - {x: -11.5, y: -15.166687}
+        - {x: -8.5, y: -19.166687}
+        - {x: 16.5, y: -19.166687}
+        - {x: 18.5, y: -18.166687}
+        - {x: 18.5, y: 0.833313}
+        - {x: 13.5, y: 8.833313}
+        - {x: -4.5, y: 8.833313}
+        - {x: -10.5, y: 5.833313}
+    - name: Explosion1_1
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 853.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16.5, y: 24.833313}
+        - {x: -13.5, y: 24.833313}
+        - {x: -29.5, y: 8.833313}
+        - {x: -30.5, y: 1.833313}
+        - {x: -30.5, y: -24.166687}
+        - {x: -7.5, y: -37.166687}
+        - {x: 21.5, y: -37.166687}
+        - {x: 28.5, y: -34.166687}
+        - {x: 36.5, y: -16.166687}
+        - {x: 36.5, y: -0.16668701}
+        - {x: 33.5, y: 12.833313}
+    - name: Explosion1_2
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 853.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.5, y: 29.833313}
+        - {x: 16.5, y: 30.833313}
+        - {x: -20.5, y: 30.833313}
+        - {x: -37.5, y: 2.833313}
+        - {x: -37.5, y: -21.166687}
+        - {x: -28.5, y: -28.166687}
+        - {x: -3.5, y: -43.166687}
+        - {x: 19.5, y: -43.166687}
+        - {x: 40.5, y: -41.166687}
+        - {x: 44.5, y: -23.166687}
+        - {x: 44.5, y: 8.833313}
+    - name: Explosion1_3
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 853.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: 34.833313}
+        - {x: -42.5, y: 10.833313}
+        - {x: -42.5, y: -27.166687}
+        - {x: -0.5, y: -48.166687}
+        - {x: 26.5, y: -48.166687}
+        - {x: 37.5, y: -47.166687}
+        - {x: 50.5, y: -23.166687}
+        - {x: 50.5, y: 27.833313}
+        - {x: 30.5, y: 34.833313}
+    - name: Explosion1_4
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 853.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 37.5, y: 35.833313}
+        - {x: -25.5, y: 35.833313}
+        - {x: -44.5, y: 30.833313}
+        - {x: -44.5, y: -49.166687}
+        - {x: 47.5, y: -49.166687}
+        - {x: 54.5, y: -32.166687}
+        - {x: 54.5, y: 7.833313}
+        - {x: 49.5, y: 20.833313}
+    - name: Explosion1_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 683.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: 35.833313}
+        - {x: -34.5, y: 32.833313}
+        - {x: -48.5, y: 14.833313}
+        - {x: -48.5, y: -50.166687}
+        - {x: -32.5, y: -51.166687}
+        - {x: 44.5, y: -51.166687}
+        - {x: 52.5, y: -24.166687}
+        - {x: 52.5, y: 13.833313}
+        - {x: 36.5, y: 35.833313}
+    - name: Explosion1_6
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 683.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.5, y: 36.833313}
+        - {x: -49.5, y: 15.833313}
+        - {x: -49.5, y: -51.166687}
+        - {x: 54.5, y: -51.166687}
+        - {x: 54.5, y: 14.833313}
+        - {x: 41.5, y: 36.833313}
+    - name: Explosion1_7
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 683.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.5, y: 36.833313}
+        - {x: -49.5, y: 11.833313}
+        - {x: -49.5, y: -38.166687}
+        - {x: -19.5, y: -52.166687}
+        - {x: 56.5, y: -52.166687}
+        - {x: 56.5, y: 33.833313}
+        - {x: 39.5, y: 36.833313}
+    - name: Explosion1_8
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 683.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 37.833313}
+        - {x: -50.5, y: 18.833313}
+        - {x: -50.5, y: -38.166687}
+        - {x: -22.5, y: -52.166687}
+        - {x: 46.5, y: -52.166687}
+        - {x: 58.5, y: -29.166687}
+        - {x: 58.5, y: 5.833313}
+        - {x: 49.5, y: 37.833313}
+    - name: Explosion1_9
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 683.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.5, y: 37.833313}
+        - {x: -50.5, y: 11.833313}
+        - {x: -50.5, y: -40.166687}
+        - {x: -21.5, y: -53.166687}
+        - {x: 50.5, y: -53.166687}
+        - {x: 60.5, y: -24.166687}
+        - {x: 60.5, y: 17.833313}
+        - {x: 49.5, y: 37.833313}
+    - name: Explosion1_10
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 683.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 47.5, y: 38.833313}
+        - {x: -29.5, y: 38.833313}
+        - {x: -50.5, y: 13.833313}
+        - {x: -50.5, y: -43.166687}
+        - {x: -29.5, y: -53.166687}
+        - {x: 49.5, y: -53.166687}
+        - {x: 61.5, y: -36.166687}
+        - {x: 61.5, y: 21.833313}
+        - {x: 56.5, y: 37.833313}
+    - name: Explosion1_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 513.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35.5, y: 38.833313}
+        - {x: -55.5, y: 15.833313}
+        - {x: -55.5, y: -55.166687}
+        - {x: 55.5, y: -55.166687}
+        - {x: 59.5, y: -49.166687}
+        - {x: 59.5, y: 30.833313}
+        - {x: 56.5, y: 38.833313}
+    - name: Explosion1_12
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 513.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40.5, y: 38.833313}
+        - {x: -55.5, y: 19.833313}
+        - {x: -55.5, y: -44.166687}
+        - {x: -49.5, y: -56.166687}
+        - {x: 50.5, y: -56.166687}
+        - {x: 60.5, y: -33.166687}
+        - {x: 60.5, y: 34.833313}
+        - {x: 44.5, y: 38.833313}
+    - name: Explosion1_13
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 513.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36.5, y: 39.833313}
+        - {x: -55.5, y: 11.833313}
+        - {x: -55.5, y: -37.166687}
+        - {x: -50.5, y: -53.166687}
+        - {x: -43.5, y: -57.166687}
+        - {x: 60.5, y: -57.166687}
+        - {x: 62.5, y: -56.166687}
+        - {x: 62.5, y: 39.833313}
+    - name: Explosion1_14
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 513.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 56.5, y: 39.833313}
+        - {x: -48.5, y: 39.833313}
+        - {x: -55.5, y: 29.833313}
+        - {x: -55.5, y: -45.166687}
+        - {x: -40.5, y: -58.166687}
+        - {x: 55.5, y: -58.166687}
+        - {x: 61.5, y: -55.166687}
+        - {x: 64.5, y: -44.166687}
+        - {x: 64.5, y: 17.833313}
+    - name: Explosion1_15
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 513.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -43.5, y: 39.833313}
+        - {x: -55.5, y: 35.833313}
+        - {x: -55.5, y: -59.166687}
+        - {x: 65.5, y: -59.166687}
+        - {x: 65.5, y: 39.833313}
+    - name: Explosion1_16
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 513.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -44.5, y: 40.833313}
+        - {x: -55.5, y: 13.833313}
+        - {x: -55.5, y: -30.166687}
+        - {x: -50.5, y: -55.166687}
+        - {x: -44.5, y: -60.166687}
+        - {x: 57.5, y: -60.166687}
+        - {x: 67.5, y: -56.166687}
+        - {x: 67.5, y: 39.833313}
+        - {x: 66.5, y: 40.833313}
+    - name: Explosion1_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 343.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -46.5, y: 40.833313}
+        - {x: -59.5, y: 8.833313}
+        - {x: -59.5, y: -58.166687}
+        - {x: -39.5, y: -61.166687}
+        - {x: 58.5, y: -61.166687}
+        - {x: 65.5, y: -49.166687}
+        - {x: 65.5, y: 20.833313}
+        - {x: 59.5, y: 40.833313}
+    - name: Explosion1_18
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 343.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 61.5, y: 40.833313}
+        - {x: -45.5, y: 40.833313}
+        - {x: -59.5, y: 4.833313}
+        - {x: -59.5, y: -55.166687}
+        - {x: -34.5, y: -62.166687}
+        - {x: 51.5, y: -62.166687}
+        - {x: 66.5, y: -51.166687}
+        - {x: 66.5, y: 36.833313}
+    - name: Explosion1_19
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 343.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -51.5, y: 41.833313}
+        - {x: -59.5, y: 14.833313}
+        - {x: -59.5, y: -43.166687}
+        - {x: -57.5, y: -54.166687}
+        - {x: -31.5, y: -63.166687}
+        - {x: 56.5, y: -63.166687}
+        - {x: 68.5, y: -49.166687}
+        - {x: 68.5, y: 41.833313}
+    - name: Explosion1_20
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 343.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -42.5, y: 41.833313}
+        - {x: -50.5, y: 40.833313}
+        - {x: -59.5, y: 30.833313}
+        - {x: -59.5, y: -49.166687}
+        - {x: -48.5, y: -63.166687}
+        - {x: 69.5, y: -63.166687}
+        - {x: 69.5, y: 41.833313}
+    - name: Explosion1_21
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 343.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41.5, y: 41.833313}
+        - {x: -59.5, y: 19.833313}
+        - {x: -59.5, y: -64.16669}
+        - {x: 62.5, y: -64.16669}
+        - {x: 70.5, y: -40.166687}
+        - {x: 70.5, y: 41.833313}
+    - name: Explosion1_22
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 343.3333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45.5, y: 42.833313}
+        - {x: -58.5, y: 28.833313}
+        - {x: -58.5, y: -31.166687}
+        - {x: -56.5, y: -54.166687}
+        - {x: -24.5, y: -64.16669}
+        - {x: 60.5, y: -64.16669}
+        - {x: 72.5, y: -46.166687}
+        - {x: 72.5, y: 42.833313}
+    - name: Explosion1_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 173.33333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 59.5, y: 41.83333}
+        - {x: -57.5, y: 41.83333}
+        - {x: -62.5, y: 38.83333}
+        - {x: -62.5, y: -61.16667}
+        - {x: -37.5, y: -66.16667}
+        - {x: 57.5, y: -66.16667}
+        - {x: 69.5, y: -49.16667}
+        - {x: 69.5, y: 19.833328}
+        - {x: 68.5, y: 21.833328}
+    - name: Explosion1_24
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 173.33333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45.5, y: 42.83333}
+        - {x: -62.5, y: 13.833328}
+        - {x: -62.5, y: -55.16667}
+        - {x: -37.5, y: -66.16667}
+        - {x: 47.5, y: -66.16667}
+        - {x: 64.5, y: -64.16667}
+        - {x: 70.5, y: -57.16667}
+        - {x: 70.5, y: 34.83333}
+        - {x: 66.5, y: 42.83333}
+    - name: Explosion1_25
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 173.33333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50.5, y: 42.83333}
+        - {x: -62.5, y: 13.833328}
+        - {x: -62.5, y: -49.16667}
+        - {x: -58.5, y: -55.16667}
+        - {x: -40.5, y: -66.16667}
+        - {x: 51.5, y: -66.16667}
+        - {x: 71.5, y: -61.16667}
+        - {x: 71.5, y: 37.83333}
+        - {x: 65.5, y: 42.83333}
+    - name: Explosion1_26
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 173.33333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 73.5, y: -47.16667}
+        - {x: 73.5, y: 6.8333282}
+        - {x: 69.5, y: 23.833328}
+        - {x: 65.5, y: 33.83333}
+        - {x: 61.5, y: 38.83333}
+        - {x: 56.5, y: 43.83333}
+        - {x: -45.5, y: 43.83333}
+        - {x: -62.5, y: 32.83333}
+        - {x: -62.5, y: -46.16667}
+        - {x: -56.5, y: -52.16667}
+        - {x: -42.5, y: -60.16667}
+        - {x: -9.5, y: -67.16667}
+        - {x: -0.5, y: -67.16667}
+        - {x: 17.5, y: -63.16667}
+        - {x: 42.5, y: -65.16667}
+        - {x: 64.5, y: -63.16667}
+    - name: Explosion1_27
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 173.33333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -43.5, y: 44.83333}
+        - {x: -62.5, y: 14.833328}
+        - {x: -62.5, y: -47.16667}
+        - {x: -59.5, y: -56.16667}
+        - {x: -36.5, y: -67.16667}
+        - {x: 41.5, y: -67.16667}
+        - {x: 72.5, y: -60.16667}
+        - {x: 74.5, y: -48.16667}
+        - {x: 74.5, y: 22.833328}
+        - {x: 67.5, y: 44.83333}
+    - name: Explosion1_28
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 173.33333
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -43.5, y: 44.83333}
+        - {x: -62.5, y: 11.833328}
+        - {x: -62.5, y: -49.16667}
+        - {x: -60.5, y: -56.16667}
+        - {x: -26.5, y: -67.16667}
+        - {x: 55.5, y: -67.16667}
+        - {x: 75.5, y: -64.16667}
+        - {x: 75.5, y: 41.83333}
+        - {x: 69.5, y: 44.83333}
+    - name: Explosion1_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3.3333282
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64.5, y: 44.83333}
+        - {x: -65.5, y: 39.83333}
+        - {x: -65.5, y: -69.16667}
+        - {x: 73.5, y: -69.16667}
+        - {x: 73.5, y: 44.83333}
+    - name: Explosion1_30
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 3.3333282
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 61.5, y: 45.83333}
+        - {x: -6.5, y: 45.83333}
+        - {x: -43.5, y: 41.83333}
+        - {x: -65.5, y: 28.833328}
+        - {x: -65.5, y: -53.16667}
+        - {x: -53.5, y: -63.16667}
+        - {x: -26.5, y: -69.16667}
+        - {x: 32.5, y: -69.16667}
+        - {x: 66.5, y: -64.16667}
+        - {x: 74.5, y: -37.16667}
+        - {x: 74.5, y: 24.833328}
+    - name: Explosion1_31
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 3.3333282
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6.5, y: -69.16667}
+        - {x: 12.5, y: -69.16667}
+        - {x: 67.5, y: -62.16667}
+        - {x: 75.5, y: -42.16667}
+        - {x: 75.5, y: 19.833328}
+        - {x: 66.5, y: 45.83333}
+        - {x: -49.5, y: 45.83333}
+        - {x: -65.5, y: 21.833328}
+        - {x: -65.5, y: -52.16667}
+        - {x: -64.5, y: -55.16667}
+        - {x: -32.5, y: -69.16667}
+        - {x: -3.5, y: -69.16667}
+        - {x: -0.5, y: -64.16667}
+        - {x: -0.5, y: -61.16667}
+        - {x: 0.5, y: -63.16667}
+    - name: Explosion1_32
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 3.3333282
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64.5, y: -68.16667}
+        - {x: 77.5, y: -20.166672}
+        - {x: 77.5, y: 46.83333}
+        - {x: -54.5, y: 46.83333}
+        - {x: -64.5, y: 29.833328}
+        - {x: -64.5, y: -57.16667}
+        - {x: -39.5, y: -66.16667}
+        - {x: -16.5, y: -70.16667}
+        - {x: -4.5, y: -70.16667}
+        - {x: 1.5, y: -65.16667}
+        - {x: 2.5, y: -70.16667}
+    - name: Explosion1_33
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 3.3333282
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.5, y: 46.83333}
+        - {x: -61.5, y: 35.83333}
+        - {x: -64.5, y: 8.833328}
+        - {x: -64.5, y: -31.166672}
+        - {x: -61.5, y: -52.16667}
+        - {x: -47.5, y: -70.16667}
+        - {x: 72.5, y: -70.16667}
+        - {x: 78.5, y: -59.16667}
+        - {x: 78.5, y: 45.83333}
+        - {x: 74.5, y: 46.83333}
+    - name: Explosion1_34
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 3.3333282
+        width: 170.66667
+        height: 170.66667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4.5, y: -53.16667}
+        - {x: 4.5, y: -63.16667}
+        - {x: 6.5, y: -65.16667}
+        - {x: 11.5, y: -65.16667}
+        - {x: 14.5, y: -61.16667}
+        - {x: 16.5, y: -55.16667}
+        - {x: 16.5, y: -52.16667}
+        - {x: 16.5, y: -57.16667}
+        - {x: 19.5, y: -62.16667}
+        - {x: 48.5, y: -67.16667}
+        - {x: 67.5, y: -60.16667}
+        - {x: 79.5, y: -36.16667}
+        - {x: 79.5, y: 46.83333}
+        - {x: -62.5, y: 46.83333}
+        - {x: -64.5, y: 39.83333}
+        - {x: -64.5, y: -57.16667}
+        - {x: -41.5, y: -69.16667}
+        - {x: -22.5, y: -71.16667}
+        - {x: -5.5, y: -71.16667}
+        - {x: 2.5, y: -66.16667}
+        - {x: 2.5, y: -61.16667}
+        - {x: 0.5, y: -56.16667}
+        - {x: 7.5, y: -51.16667}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

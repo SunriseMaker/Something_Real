@@ -1,0 +1,417 @@
+fileFormatVersion: 2
+guid: 3a41404a0dfafef469c73645c5377a37
+timeCreated: 1469717709
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: shadow_0
+    21300002: shadow_1
+    21300004: shadow_2
+    21300006: shadow_3
+    21300008: shadow_4
+    21300010: shadow_5
+    21300012: shadow_6
+    21300014: shadow_7
+    21300016: shadow_8
+    21300018: shadow_9
+    21300020: shadow_10
+    21300022: shadow_11
+    21300024: shadow_12
+    21300026: shadow_13
+    21300028: shadow_14
+    21300030: shadow_15
+    21300032: shadow_16
+    21300034: shadow_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: shadow_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: -31}
+        - {x: -7, y: -34}
+        - {x: -4, y: -35}
+        - {x: 14, y: -35}
+        - {x: 19, y: -31}
+        - {x: 18, y: -28}
+        - {x: -3, y: -28}
+    - name: shadow_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 280
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: -27}
+        - {x: -9, y: -27}
+        - {x: -13, y: -31}
+        - {x: -12, y: -34}
+        - {x: -8, y: -35}
+        - {x: 17, y: -35}
+        - {x: 24, y: -32}
+        - {x: 24, y: -31}
+        - {x: 23, y: -28}
+    - name: shadow_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 280
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: -27}
+        - {x: -19, y: -31}
+        - {x: -19, y: -35}
+        - {x: 29, y: -35}
+        - {x: 31, y: -31}
+        - {x: 30, y: -27}
+    - name: shadow_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 280
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: -27}
+        - {x: -25, y: -35}
+        - {x: 32, y: -35}
+        - {x: 37, y: -32}
+        - {x: 37, y: -31}
+        - {x: 35, y: -27}
+    - name: shadow_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 210
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: -27}
+        - {x: -31, y: -29}
+        - {x: -31, y: -35}
+        - {x: 37, y: -35}
+        - {x: 40, y: -33}
+        - {x: 40, y: -28}
+        - {x: 33, y: -27}
+    - name: shadow_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 210
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: -16}
+        - {x: -5, y: -16}
+        - {x: -31, y: -28}
+        - {x: -31, y: -35}
+        - {x: 37, y: -35}
+        - {x: 40, y: -33}
+        - {x: 40, y: -28}
+        - {x: 10, y: -17}
+    - name: shadow_6
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 210
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: -8}
+        - {x: -31, y: -25}
+        - {x: -31, y: -33}
+        - {x: -30, y: -34}
+        - {x: -26, y: -35}
+        - {x: 35, y: -35}
+        - {x: 40, y: -33}
+        - {x: 40, y: -27}
+        - {x: 15, y: -8}
+    - name: shadow_7
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 210
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: -35}
+        - {x: 40, y: -35}
+        - {x: 40, y: -19}
+        - {x: 30, y: -2}
+        - {x: -7, y: -2}
+        - {x: -31, y: -28}
+    - name: shadow_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 5}
+        - {x: -31, y: -31}
+        - {x: -31, y: -35}
+        - {x: 37, y: -35}
+        - {x: 40, y: -33}
+        - {x: 40, y: -27}
+        - {x: 16, y: 5}
+    - name: shadow_9
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 140
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 10}
+        - {x: -14, y: 8}
+        - {x: -31, y: -26}
+        - {x: -31, y: -35}
+        - {x: 37, y: -35}
+        - {x: 40, y: -33}
+        - {x: 40, y: -27}
+        - {x: 15, y: 10}
+    - name: shadow_10
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 140
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15, y: 15}
+        - {x: -8, y: 15}
+        - {x: -35, y: -7}
+        - {x: -35, y: -31}
+        - {x: -32, y: -35}
+        - {x: 35, y: -35}
+        - {x: 40, y: -33}
+        - {x: 40, y: -27}
+        - {x: 16, y: 14}
+    - name: shadow_11
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 140
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 24}
+        - {x: -40, y: 0}
+        - {x: -40, y: -7}
+        - {x: -32, y: -35}
+        - {x: 38, y: -35}
+        - {x: 40, y: -34}
+        - {x: 40, y: -6}
+        - {x: 13, y: 24}
+    - name: shadow_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 70
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 29}
+        - {x: -40, y: -35}
+        - {x: 40, y: -35}
+        - {x: 40, y: -19}
+        - {x: 26, y: 29}
+    - name: shadow_13
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 70
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 33}
+        - {x: -14, y: 33}
+        - {x: -40, y: 25}
+        - {x: -40, y: 5}
+        - {x: -39, y: 5}
+        - {x: -31, y: -35}
+        - {x: 37, y: -35}
+        - {x: 40, y: -33}
+        - {x: 40, y: -20}
+        - {x: 25, y: 22}
+    - name: shadow_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 33}
+        - {x: -38, y: 33}
+        - {x: -40, y: 31}
+        - {x: -40, y: -28}
+        - {x: -31, y: -35}
+        - {x: 37, y: -35}
+        - {x: 40, y: -33}
+        - {x: 40, y: -12}
+        - {x: 22, y: 21}
+    - name: shadow_15
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36, y: 33}
+        - {x: -40, y: 32}
+        - {x: -40, y: -35}
+        - {x: 40, y: -35}
+        - {x: 40, y: 25}
+        - {x: 19, y: 33}
+    - name: shadow_16
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 34}
+        - {x: -40, y: -20}
+        - {x: -35, y: -31}
+        - {x: -31, y: -35}
+        - {x: 37, y: -35}
+        - {x: 40, y: -33}
+        - {x: 40, y: -4}
+        - {x: 25, y: 34}
+    - name: shadow_17
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27, y: -17}
+        - {x: 27, y: -19}
+        - {x: 28, y: -13}
+        - {x: 30, y: -2}
+        - {x: 25, y: 22}
+        - {x: 10, y: 32}
+        - {x: 5, y: 33}
+        - {x: -1, y: 33}
+        - {x: -40, y: 26}
+        - {x: -40, y: 1}
+        - {x: -35, y: -31}
+        - {x: -28, y: -35}
+        - {x: 35, y: -35}
+        - {x: 40, y: -33}
+        - {x: 40, y: -28}
+        - {x: 30, y: -19}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
