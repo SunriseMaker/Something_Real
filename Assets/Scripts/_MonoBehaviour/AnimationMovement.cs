@@ -41,7 +41,7 @@ public class AnimationMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (((Vector2)transform.position - destination).magnitude < 0.01)
+        if (((Vector2)transform.position - destination).magnitude < 0.5f)
         {
             switch (on_finish)
             {

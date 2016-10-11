@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public static class __Attacks
 {
-    public static void PerformAttack(AttackData attack_data, Vector2 aim, Vector2 attacker_position, int instance_id_ignored, string tag_ignored)
+    public static void PerformAttack(AttackData attack_data, Vector2 aim, Vector2 attacker_position, int instance_id_ignored)
     {
         RaycastHit2D[] raycasts;
 
@@ -20,7 +20,7 @@ public static class __Attacks
 
         var q1 = from q in raycasts
                  where
-                    q.collider.tag!=tag_ignored
+                    q.collider.tag!=attack_data.ignore_tag
                     &&
                     q.collider.gameObject.GetInstanceID() != instance_id_ignored
                  select new
@@ -84,7 +84,8 @@ public static class __Attacks
 
     public static void SpawnProjectile(ProjectileAttackData projectile_attack_data, Vector2 launch_direction, Vector3 position)
     {
-        Vector3 object_position = new Vector3(position.x, position.y, projectile_attack_data.projectile_prefab.transform.position.z);
+        //Vector3 object_position = new Vector3(position.x, position.y, projectile_attack_data.projectile_prefab.transform.position.z);
+        Vector3 object_position = position;
 
         GameObject p = UnityEngine.Object.Instantiate(
             projectile_attack_data.projectile_prefab,

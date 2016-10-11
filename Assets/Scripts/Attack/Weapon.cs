@@ -33,7 +33,6 @@ public sealed class Weapon : MonoBehaviour
         AP_Attack = Animator.StringToHash("Attack");
 
         attack_data = projectile_weapon ? GetComponent<ProjectileAttackData>() : GetComponent<AttackData>();
-
         can_attack = true;
     }
     #endregion MonoBehaviour
@@ -49,10 +48,11 @@ public sealed class Weapon : MonoBehaviour
         }
     }
 
-    public void SetOwnerData(Rigidbody2D v_rigidbody, int v_instance_id)
+    public void SetOwnerData(Rigidbody2D v_rigidbody, int v_instance_id, string v_tag)
     {
         owner_rigidbody = v_rigidbody;
         owner_instance_id = v_instance_id;
+        attack_data.ignore_tag = v_tag;
     }
 
     private void AttackAnimation()
@@ -85,7 +85,7 @@ public sealed class Weapon : MonoBehaviour
         }
         else
         {
-            __Attacks.PerformAttack(attack_data, aim, transform.position, owner_instance_id, transform.parent.tag);
+            __Attacks.PerformAttack(attack_data, aim, transform.position, owner_instance_id);
         }
 
         AttackSound();

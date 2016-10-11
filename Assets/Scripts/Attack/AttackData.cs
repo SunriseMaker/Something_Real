@@ -14,11 +14,12 @@ public class AttackData : MonoBehaviour
 
     public bool always_apply_impact_force;
 
-    
-
     public bool penetrate_enemies;
 
     public bool penetrate_walls;
 
     public AudioClip sound;
+
+    [HideInInspector]
+    public string ignore_tag;
 }

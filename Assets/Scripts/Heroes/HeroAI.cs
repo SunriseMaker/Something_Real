@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class HeroAI : MonoBehaviour
 {
-    protected delegate System.Collections.IEnumerator TriggerStatus();
+    protected delegate System.Collections.IEnumerator TriggerStatus(float delay);
 
     const float PAUSE_BETWEEN_SEARCHES = 1.0f;
     
@@ -37,11 +37,14 @@ public class HeroAI : MonoBehaviour
     public float lost_target_distance;
 
     [Header("Timing")]
-    [Range(0.1f, 1.0f)]
-    public float pause_between_attacks;
+    [Range(0.0f, 1.0f)]
+    public float delay_before_attack;
 
     [Range(0.1f, 1.0f)]
-    public float pause_between_jumps;
+    public float delay_between_attacks;
+
+    [Range(0.1f, 1.0f)]
+    public float delay_between_jumps;
 
     protected HeroController hero;
 
@@ -61,15 +64,11 @@ public class HeroAI : MonoBehaviour
 
     protected bool can_search_for_enemy;
 
-    protected bool can_attack;
-
-    protected bool can_defend;
-
     protected bool can_jump;
 
-    protected List<HeroSkill> attack_skills = new List<HeroSkill>();
+    protected List<HeroSkill> offensive_skills = new List<HeroSkill>();
 
-    protected List<HeroSkill> defence_skills = new List<HeroSkill>();
+    protected List<HeroSkill> defensive_skills = new List<HeroSkill>();
 
     private bool on_critical_hp_done;
     #endregion Variables
@@ -86,8 +85,8 @@ public class HeroAI : MonoBehaviour
 
         if (hero.available_skills.Count>0)
         {
-            attack_skills = hero.available_skills.FindAll((a) => a.skill_type == HeroSkill.SkillType.Attack);
-            defence_skills = hero.available_skills.FindAll((a) => a.skill_type == HeroSkill.SkillType.Defence);
+            offensive_skills = hero.available_skills.FindAll((a) => a.skill_type == HeroSkill.SkillType.Offensive);
+            defensive_skills = hero.available_skills.FindAll((a) => a.skill_type == HeroSkill.SkillType.Defensive);
         }
 
         hero.SelectRandomWeapon();
@@ -95,10 +94,6 @@ public class HeroAI : MonoBehaviour
         can_search_for_leader = true;
 
         can_search_for_enemy = true;
-
-        can_attack = true;
-
-        can_defend = true;
 
         can_jump = true;
 
@@ -140,13 +135,13 @@ public class HeroAI : MonoBehaviour
 
             if(enemy!=null)
             {
-                Emotion(GameData.Prefabs.emotion_alertness);
+                Emotion(GameData.Emotions.alertness);
             }
         }
 
         if(enemy!=null)
         {
-            if (CheckTarget(ref enemy, hero.enemy_tag, null, true, true, GameData.Prefabs.emotion_happiness))
+            if (CheckTarget(ref enemy, hero.enemy_tag, null, true, true, null))
             {
                 Pursue(enemy, true);
                 return;
@@ -164,13 +159,13 @@ public class HeroAI : MonoBehaviour
 
                 if (leader != null)
                 {
-                    Emotion(GameData.Prefabs.emotion_happiness);
+                    Emotion(GameData.Emotions.happiness);
                 }
             }
 
             if(leader != null)
             {
-                if (CheckTarget(ref leader, hero.tag, true, false, false, GameData.Prefabs.emotion_sadness))
+                if (CheckTarget(ref leader, hero.tag, true, false, false, GameData.Emotions.sadness))
                 {
                     Pursue(leader, false);
                     return;
@@ -179,14 +174,17 @@ public class HeroAI : MonoBehaviour
         }
         #endregion Leader
 
-        Roam();
+        if(!idle)
+        {
+            Roam();
+        }
     }
     #endregion MonoBehaviour
 
     #region Red
     protected void Emotion(GameObject emotion_prefab)
     {
-        __General.InstantiatePrefab(emotion_prefab, hero_position + Vector2.up * 2, Quaternion.Euler(Vector3.zero), hero.transform, false);
+        __General.InstantiatePrefab(emotion_prefab, emotion_prefab.name, hero_position + Vector2.up * 2, Quaternion.Euler(Vector3.zero), hero.transform, false);
     }
 
     protected bool CheckTarget(ref iLiving target, string target_tag, bool? target_is_leader, bool lost_if_too_far, bool lost_if_invisible, GameObject emotion_if_dead)
@@ -221,7 +219,7 @@ public class HeroAI : MonoBehaviour
 
         if (lost_if_invisible && enemy.IsInvisible())
         {
-            Emotion(GameData.Prefabs.emotion_surprise);
+            Emotion(GameData.Emotions.surprise);
             enemy = null;
             return false;
         }
@@ -271,7 +269,7 @@ public class HeroAI : MonoBehaviour
 
         TurnToTarget(target_position);
 
-        if (!idle)
+        if (!idle && hero.can_move)
         {
             if (absolute_target_direction.x > CLOSEST_DISTANCE)
             {
@@ -313,9 +311,43 @@ public class HeroAI : MonoBehaviour
             }
         }
 
-        if (attack && can_attack && target_distance <= attack_distance)
+        if (attack && hero.can_attack && target_distance <= attack_distance)
         {
-            RandomSkill(attack_skills, TriggerCanAttack);
+            StartCoroutine(RandomAttack());
+        }
+    }
+
+    protected void RandomDefence()
+    {
+        HeroSkill defensive_skill = RandomSkill(HeroSkill.SkillType.Defensive);
+
+        if(defensive_skill!=null)
+        {
+            defensive_skill.Use();
+        }
+    }
+
+    protected virtual System.Collections.IEnumerator RandomAttack()
+    {
+        HeroSkill offensive_skill = RandomSkill(HeroSkill.SkillType.Offensive);
+
+        if (offensive_skill != null)
+        {
+            hero.can_attack = false;
+            
+            if(delay_before_attack>0)
+            {
+                yield return new WaitForSeconds(delay_before_attack);
+            }
+            
+            offensive_skill.Use();
+
+            hero.can_move = false;
+
+            yield return new WaitForSeconds(delay_between_attacks);
+
+            hero.can_move = true;
+            hero.can_attack = true;
         }
     }
 
@@ -335,23 +367,38 @@ public class HeroAI : MonoBehaviour
         }
     }
 
-    protected void RandomSkill(List<HeroSkill> skill_list, TriggerStatus trigger)
+    protected HeroSkill RandomSkill(HeroSkill.SkillType skill_type)
     {
-        if (skill_list.Count == 0)
+        HeroSkill random_skill = null;
+        List<HeroSkill> skill_list;
+
+        switch(skill_type)
         {
-            return;
+            case HeroSkill.SkillType.Offensive:
+                skill_list = offensive_skills;
+                break;
+
+            case HeroSkill.SkillType.Defensive:
+                skill_list = defensive_skills;
+                break;
+            
+            default:
+                return random_skill;
         }
 
-        int index = UnityEngine.Random.Range(0, skill_list.Count);
+        if (skill_list.Count > 0)
+        {
+            int index = UnityEngine.Random.Range(0, skill_list.Count);
 
-        skill_list[index].Use();
+            random_skill = skill_list[index];
+        }
 
-        StartCoroutine(trigger());
+        return random_skill;
     }
 
     protected virtual void OnCriticalHP()
     {
-        RandomSkill(defence_skills, TriggerCanDefend);
+        RandomDefence();
     }
     #endregion Red
 
@@ -378,27 +425,9 @@ public class HeroAI : MonoBehaviour
     {
         can_jump = false;
 
-        yield return new WaitForSeconds(pause_between_jumps);
+        yield return new WaitForSeconds(delay_between_jumps);
 
         can_jump = true;
-    }
-
-    protected System.Collections.IEnumerator TriggerCanAttack()
-    {
-        can_attack = false;
-
-        yield return new WaitForSeconds(pause_between_attacks);
-
-        can_attack = true;
-    }
-
-    protected System.Collections.IEnumerator TriggerCanDefend()
-    {
-        can_defend = false;
-
-        yield return new WaitForSeconds(pause_between_attacks);
-
-        can_defend = true;
     }
     #endregion Triggers
 }

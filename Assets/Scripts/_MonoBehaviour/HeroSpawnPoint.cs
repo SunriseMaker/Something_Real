@@ -5,43 +5,35 @@ public sealed class HeroSpawnPoint : MonoBehaviour
     public GameObject hero_prefab;
     private HeroController spawned_hero;
 
-    public float interval;
-
     public bool spawn_on_awake;
 
-    private float timer;
+    public float interval;
 
     private void Awake()
     {
-        timer = 0.0f;
-
-        if (spawn_on_awake)
+        if(spawn_on_awake)
         {
             Spawn();
         }
+
+        StartCoroutine(crSpawn());
     }
 
-    private void FixedUpdate()
+    private System.Collections.IEnumerator crSpawn()
     {
-        if(interval>0)
+        while(true)
         {
-            timer += Time.deltaTime;
+            yield return new WaitUntil(() => spawned_hero == null || spawned_hero.IsDead());
 
-            if (timer >= interval)
-            {
-                Spawn();
-                timer = 0.0f;
-            }
+            yield return new WaitForSeconds(interval);
+
+            Spawn();
         }
     }
 
     public void Spawn()
     {
-        if(hero_prefab!=null && (spawned_hero == null || spawned_hero.IsDead()))
-        {
-            GameObject hero_game_object = Instantiate(hero_prefab, transform.position, hero_prefab.transform.rotation) as GameObject;
-            spawned_hero = hero_game_object.GetComponent<HeroController>();
-        }
-        
+        GameObject hero_game_object = Instantiate(hero_prefab, transform.position, hero_prefab.transform.rotation) as GameObject;
+        spawned_hero = hero_game_object.GetComponent<HeroController>();
     }
 }

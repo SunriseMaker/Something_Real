@@ -41,9 +41,9 @@ public class HeroPlayable : MonoBehaviour
         if (hud_gameobject != null)
         {
             hud = hud_gameobject.GetComponent<HUD>();
+            hud.SetHeroReference(this);
+            HUDUpdateActiveSkills();
         }
-
-        HUDUpdateActiveSkills();
     }
 
     private void OnEnable()
@@ -53,12 +53,62 @@ public class HeroPlayable : MonoBehaviour
 
     private void Update()
     {
-        UserInput();
-        EntityControl();
+        if (!GameData.Time.game_paused && !hero.IsDead())
+        {
+            UserInput();
+            EntityControl();
+        }
     }
     #endregion MonoBehaviour
 
     #region Red
+    public virtual void UserInput()
+    {
+        userinput_x = Input.GetAxis("Horizontal");
+        userinput_y = Input.GetAxis("Vertical");
+        userinput_sprint = Input.GetAxis("Sprint") != 0;
+        userinput_jump = Input.GetButtonDown("Jump");
+
+        userinput_skill1 = Input.GetAxis("Skill1") != 0;
+        userinput_skill2 = Input.GetAxis("Skill2") != 0;
+        userinput_skill3 = Input.GetAxis("Skill3") != 0;
+    }
+
+    public void EntityControl()
+    {
+        if (userinput_x != 0 || userinput_y != 0)
+        {
+            hero.Move(userinput_x, userinput_y, userinput_sprint);
+        }
+
+        if (userinput_jump)
+        {
+            if (userinput_y == -1.0f)
+            {
+                hero.JumpDown();
+            }
+            else
+            {
+                hero.Jump();
+            }
+        }
+
+        if (userinput_skill1)
+        {
+            UseActiveSkill(1);
+        }
+
+        if (userinput_skill2)
+        {
+            UseActiveSkill(2);
+        }
+
+        if (userinput_skill3)
+        {
+            UseActiveSkill(3);
+        }
+    }
+
     private void InitializeActiveSkills()
     {
         #region ActiveSkillsList
@@ -88,70 +138,35 @@ public class HeroPlayable : MonoBehaviour
         active_skills[index - 1].Use();
     }
 
-    public void EntityControl()
-    {
-        if (GameData.Time.game_paused || hero.IsDead())
-        {
-            return;
-        }
-
-        if(userinput_x!=0 || userinput_y != 0)
-        {
-            hero.Move(userinput_x, userinput_y, userinput_sprint);
-        }
-
-        if (userinput_jump)
-        {
-            if(userinput_y==-1.0f)
-            {
-                hero.JumpDown();
-            }
-            else
-            {
-                hero.Jump();
-            }
-        }
-
-        if (userinput_skill1)
-        {
-            UseActiveSkill(1);
-        }
-
-        if (userinput_skill2)
-        {
-            UseActiveSkill(2);
-        }
-
-        if (userinput_skill3)
-        {
-            UseActiveSkill(3);
-        }
-
-        SpecialEntityControl();
-    }
-
-    protected virtual void SpecialEntityControl()
-    {
-    }
-
-    public virtual void UserInput()
-    {
-        userinput_x = Input.GetAxis("Horizontal");
-        userinput_y = Input.GetAxis("Vertical");
-        userinput_sprint = Input.GetAxis("Sprint") != 0;
-        userinput_jump = Input.GetButtonDown("Jump");
-
-        userinput_skill1 = Input.GetAxis("Skill1") != 0;
-        userinput_skill2 = Input.GetAxis("Skill2") != 0;
-        userinput_skill3 = Input.GetAxis("Skill3") != 0;
-    }
-
     private void HUDUpdateActiveSkills()
     {
         if(hud!=null)
         {
-            hud.UpdateActiveSkills(active_skills);
+            hud.UpdateActiveSkills();
         }
+    }
+
+    public void NextSkill(int skill_number)
+    {
+        if(skill_number> ACTIVE_SKILLS_COUNT || skill_number>active_skills.Count)
+        {
+            return;
+        }
+
+        skill_number--;
+
+        int next_skill_index = 0;
+
+        int current_skill_index = hero.available_skills.IndexOf(active_skills[skill_number]);
+
+        if (current_skill_index != -1 && current_skill_index != hero.available_skills.Count - 1)
+        {
+            next_skill_index = current_skill_index + 1;
+        }
+
+        active_skills[skill_number] = hero.available_skills[next_skill_index];
+
+        HUDUpdateActiveSkills();
     }
     #endregion Red
 }

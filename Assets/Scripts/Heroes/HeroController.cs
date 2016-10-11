@@ -103,13 +103,16 @@ public class HeroController : MonoBehaviour, iLiving, iMana
 
     [HideInInspector]
     public bool can_move;
+
+    [HideInInspector]
+    public bool can_attack;
     #endregion Statuses
 
     #region Jumps
     [Header("Jumps")]
     public int jump_count;
 
-    public float jump_height;
+    public float jump_force;
 
     // Jump counter
     private int jump_number;
@@ -138,9 +141,11 @@ public class HeroController : MonoBehaviour, iLiving, iMana
     #region ComponentReferences
     protected SpriteRenderer _renderer;
 
-    protected Rigidbody2D _rigidbody;
+    [HideInInspector]
+    public Rigidbody2D _rigidbody;
 
-    protected Animator _animator;
+    [HideInInspector]
+    public Animator _animator;
 
     protected DestroyAfterDelay _destroy_after_delay;
     #endregion ComponentReferences
@@ -160,6 +165,12 @@ public class HeroController : MonoBehaviour, iLiving, iMana
     private Vector2 APV_movement_current;
     private Vector2 APV_movement_previous;
     #endregion AnimatorParameters
+
+    #region Input
+    private float input_axis_x;
+    private float input_axis_y;
+    private bool input_sprint;
+    #endregion Input
     #endregion Variables
 
     #region MonoBehaviour
@@ -172,7 +183,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         Debug.Assert(initial_mp <= initial_max_mp, assertion_prefix + "initial_mp is greater than initial_max_mp.");
         Debug.Assert(initial_hp <= initial_max_hp, assertion_prefix + "initial_hp is greater than initial_max_hp.");
         Debug.Assert(initial_hp > 0, assertion_prefix + "initial_hp is not positive.");
-        Debug.Assert(jump_count == 0 || jump_height > 0, assertion_prefix+"jump_height is zero");
+        Debug.Assert(jump_count == 0 || jump_force > 0, assertion_prefix+"jump_force is zero");
         #endregion Assertions
 
         #region ComponentReferences
@@ -196,6 +207,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
 
         #region Statuses
         can_move = true;
+        can_attack = true;
         forward_direction = Vector2.right;
         #endregion Statuses
 
@@ -220,15 +232,111 @@ public class HeroController : MonoBehaviour, iLiving, iMana
     private void Update()
     {
         CalculateVelocity();
-
-        VelocityAnimation();
     }
 
-    protected virtual void FixedUpdate()
+    private void FixedUpdate()
     {
-        JumpOver();
+        Movement();
 
-        MovementAnimation();
+        JumpOver();
+    }
+
+    private void Movement()
+    {
+        const float AMORTIZATION = 10.0f;
+
+        if (can_move)
+        {
+            float speed;
+            float delta_time = Time.deltaTime;
+
+            #region axis_x
+            if (input_axis_x != 0)
+            {
+                speed = input_axis_x * movement_speed;
+
+                if (input_sprint)
+                {
+                    speed *= sprint_coefficient;
+                }
+
+                TurnToMovingDirection(input_axis_x);
+
+                // Amortizing the forces affecting X axis
+
+                float axis_x_sign = Math.Sign(input_axis_x);
+                float rigidbody_velocity_x_sign = Math.Sign(_rigidbody.velocity.x);
+
+                if (rigidbody_velocity_x_sign != 0 && rigidbody_velocity_x_sign != axis_x_sign)
+                {
+                    float amortization = input_axis_x * AMORTIZATION * delta_time;
+
+                    float new_rigidbody_velocity_x = _rigidbody.velocity.x + amortization;
+
+                    if (Math.Sign(new_rigidbody_velocity_x) != rigidbody_velocity_x_sign)
+                    {
+                        new_rigidbody_velocity_x = 0;
+                    }
+
+                    _rigidbody.velocity = new Vector2(new_rigidbody_velocity_x, _rigidbody.velocity.y);
+                }
+
+                // Checking for walls
+
+                //Debug.DrawRay(NearestPosition_Forward(), ForwardDirection() * MIN_DISTANCE, Color.red, DRAW_TIME);
+                if (Physics2D.Raycast(NearestPosition_Forward(), ForwardDirection(), MIN_DISTANCE, GameData.LayerMasks.Default).collider == null)
+                {
+                    transform.Translate(speed * delta_time, 0, 0, Space.World);
+                }
+            }
+            #endregion axis_x
+
+            #region axis_y
+            if (input_axis_y != 0 && able_to_levitate)
+            {
+                speed = input_axis_y * movement_speed;
+
+                if (input_sprint)
+                {
+                    speed *= sprint_coefficient;
+                }
+
+                // Ignoring gravitation
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
+
+                transform.Translate(Vector2.up * speed * delta_time, Space.World);
+            }
+            #endregion axis_y
+        }
+
+        APV_movement_current = new Vector2(Math.Abs(input_axis_x), Math.Abs(input_axis_y));
+
+        #region AnimatorParametersUpdate
+        if (APV_movement_current != APV_movement_previous)
+        {
+            _animator.SetFloat(AP_movement_x, APV_movement_current.x);
+            _animator.SetFloat(AP_movement_y, APV_movement_current.y);
+
+            APV_movement_previous = APV_movement_current;
+            APV_movement_current = Vector2.zero;
+        }
+        #endregion AnimatorParametersUpdate
+
+        ResetInput();
+    }
+
+    private void ResetInput()
+    {
+        input_axis_x = 0.0f;
+        input_axis_y = 0.0f;
+        input_sprint = false;
+    }
+
+    public void Move(float v_axis_x, float v_axis_y, bool v_sprint)
+    {
+        input_axis_x = v_axis_x;
+        input_axis_y = v_axis_y;
+        input_sprint = v_sprint;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -252,7 +360,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
 
         foreach (GameObject go in skills_on_spawn)
         {
-            GameObject instance_gameobject = __General.InstantiatePrefab(go, Vector3.zero, Quaternion.Euler(Vector3.zero), _skills_group, false);
+            GameObject instance_gameobject = __General.InstantiatePrefab(go, go.name, Vector3.zero, Quaternion.Euler(Vector3.zero), _skills_group, false);
             HeroSkill instance_skill = instance_gameobject.GetComponent<HeroSkill>();
             instance_skill.SetHeroReference(this);
             available_skills.Add(instance_skill);
@@ -275,8 +383,6 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         gameObject.layer = GameData.Layers.Limbo;
 
         jump_number = 0;
-
-        //StartCoroutine(DateTimeFunctions.SlowMotion(1.5f, 2));
 
         Animation_Death();
 
@@ -392,10 +498,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         velocity = (current_position - previous_position) / Time.deltaTime;
 
         previous_position = current_position;
-    }
 
-    private void VelocityAnimation()
-    {
         if (movement_speed == 0)
         {
             APV_velocity_current = Vector2.zero;
@@ -412,20 +515,6 @@ public class HeroController : MonoBehaviour, iLiving, iMana
 
             APV_velocity_previous = APV_velocity_current;
         }
-    }
-
-    private void MovementAnimation()
-    {
-        if (APV_movement_current != APV_movement_previous)
-        {
-            _animator.SetFloat(AP_movement_x, APV_movement_current.x);
-            _animator.SetFloat(AP_movement_y, APV_movement_current.y);
-
-            APV_movement_previous = APV_movement_current;
-        }
-
-        // This parameter can be changed in Move() method
-        APV_movement_current = Vector2.zero;
     }
 
     private void CalculateOffsets()
@@ -485,9 +574,9 @@ public class HeroController : MonoBehaviour, iLiving, iMana
 
         foreach (GameObject go in weapons_on_spawn)
         {
-            GameObject instance_gameobject = __General.InstantiatePrefab(go, position, Quaternion.Euler(Vector3.zero), _weapons_group, true);
+            GameObject instance_gameobject = __General.InstantiatePrefab(go, go.name, position, Quaternion.Euler(Vector3.zero), _weapons_group, true);
             Weapon instance_weapon = instance_gameobject.GetComponent<Weapon>();
-            instance_weapon.SetOwnerData(_rigidbody, instance_id);
+            instance_weapon.SetOwnerData(_rigidbody, instance_id, tag);
             available_weapons.Add(instance_weapon);
         }
 
@@ -604,11 +693,13 @@ public class HeroController : MonoBehaviour, iLiving, iMana
 
     public void PerformAttack(AttackData attack_data)
     {
-        __Attacks.PerformAttack(attack_data, Aim(), NearestPosition_Forward(), instance_id, tag);
+        attack_data.ignore_tag = tag;
+        __Attacks.PerformAttack(attack_data, Aim(), NearestPosition_Forward(), instance_id);
     }
 
     public void SpawnProjectile(ProjectileAttackData attack_data)
     {
+        attack_data.ignore_tag = tag;
         __Attacks.SpawnProjectile(attack_data, Aim(), Position_Forward());
     }
 
@@ -621,9 +712,9 @@ public class HeroController : MonoBehaviour, iLiving, iMana
             Vector2 lowest_point = NearestPosition_BottomCenter();
 
             Instantiate(
-                GameData.Prefabs.jump_particles,
-                new Vector3(lowest_point.x, lowest_point.y, GameData.Prefabs.jump_particles.transform.position.z),
-                GameData.Prefabs.jump_particles.transform.rotation
+                GameData.Particles.jump,
+                new Vector3(lowest_point.x, lowest_point.y, GameData.Particles.jump.transform.position.z),
+                GameData.Particles.jump.transform.rotation
                 );
 
             _animator.SetTrigger(AP_jump);
@@ -633,7 +724,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
             // Ignoring gravitation
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
 
-            _rigidbody.AddForce(Vector2.up * jump_height, ForceMode2D.Impulse);
+            _rigidbody.AddForce(Vector2.up * jump_force, ForceMode2D.Impulse);
 
             jumped = true;
         }
@@ -664,79 +755,6 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         {
             _animator.SetTrigger(AP_jump);
             StartCoroutine(LayerShift(GameData.Layers.Living, GameData.Layers.Void, 0.75f / _rigidbody.gravityScale));
-        }
-    }
-
-    public void Move(float axis_x, float axis_y, bool sprint)
-    {
-        const float AMORTIZATION = 10.0f;
-
-        if (!can_move)
-        {
-            return;
-        }
-
-        APV_movement_current = new Vector2(Math.Abs(axis_x), Math.Abs(axis_y));
-
-        // X
-
-        float speed;
-        float delta_time = Time.deltaTime;
-
-        if (axis_x != 0)
-        {
-            speed = axis_x * movement_speed;
-
-            if (sprint)
-            {
-                speed *= sprint_coefficient;
-            }
-
-            TurnToMovingDirection(axis_x);
-
-            // Amortizing the forces affecting X axis
-
-            float axis_x_sign = Math.Sign(axis_x);
-            float rigidbody_velocity_x_sign = Math.Sign(_rigidbody.velocity.x);
-
-            if (rigidbody_velocity_x_sign != 0 && rigidbody_velocity_x_sign != axis_x_sign)
-            {
-                float amortization = axis_x * AMORTIZATION * delta_time;
-
-                float new_rigidbody_velocity_x = _rigidbody.velocity.x + amortization;
-
-                if (Math.Sign(new_rigidbody_velocity_x) != rigidbody_velocity_x_sign)
-                {
-                    new_rigidbody_velocity_x = 0;
-                }
-
-                _rigidbody.velocity = new Vector2(new_rigidbody_velocity_x, _rigidbody.velocity.y);
-            }
-
-            // Checking for walls
-
-            //Debug.DrawRay(NearestPosition_Forward(), ForwardDirection() * MIN_DISTANCE, Color.red, DRAW_TIME);
-            if (Physics2D.Raycast(NearestPosition_Forward(), ForwardDirection(), MIN_DISTANCE, GameData.LayerMasks.Default).collider == null)
-            {
-                transform.Translate(speed * delta_time, 0, 0, Space.World);
-            }
-        }
-
-        // Y
-
-        if (axis_y != 0 && able_to_levitate)
-        {
-            speed = axis_y * movement_speed;
-
-            if (sprint)
-            {
-                speed *= sprint_coefficient;
-            }
-
-            // Ignoring gravitation
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
-
-            transform.Translate(Vector2.up * speed * delta_time, Space.World);
         }
     }
     #endregion Abilities

@@ -12,22 +12,33 @@ public class HUD : MonoBehaviour
     private Image health_slider_handle_image;
     private Slider health_slider;
     private Text health_text;
-    #endregion HealthBar
+    #endregion Health
 
-    [Header("Mana")]
     #region Mana
+    [Header("Mana")]
     private Slider mana_slider;
     private Text mana_text;
     #endregion Mana
 
-    [Header("Weapons")]
+    #region Items
+    [Header("Items")]
+    private Image item_image;
+    private Text item_text;
+    #endregion Items
+
     #region Weapons
+    [Header("Weapons")]
     private Image weapon_image;
     #endregion Weapons
-    #endregion Variables
 
+    #region Skills
     [Header("Active Skills")]
     public Image[] skill_images;
+    #endregion Skills
+
+    private HeroPlayable hero_playable;
+
+    #endregion Variables
 
     #region MonoBehaviour
     private void Awake()
@@ -37,6 +48,9 @@ public class HUD : MonoBehaviour
 
         mana_slider = transform.FindChild("HUD_Mana_Slider").GetComponent<Slider>();
         mana_text = transform.FindChild("HUD_Mana_Text").GetComponent<Text>();
+
+        item_image = transform.FindChild("HUD_Item_Image").GetComponent<Image>();
+        item_text = transform.FindChild("HUD_Item_Text").GetComponent<Text>();
 
         weapon_image = transform.FindChild("HUD_Weapon_Image").GetComponent<Image>();
 
@@ -58,14 +72,36 @@ public class HUD : MonoBehaviour
         mana_text.text = ((int)current_mana).ToString();
     }
 
-    public void UpdateWeapon(Sprite weapon_sprite)
+    public void UpdateItem(InventoryCell inventory_cell)
     {
-        weapon_image.sprite = weapon_sprite;
+        float alpha = 0;
 
-        weapon_image.canvasRenderer.SetAlpha(weapon_sprite == null ? 0.0f : 1.0f);
+        if(inventory_cell!=null)
+        {
+            alpha = 1;
+
+            item_image.sprite = inventory_cell.inventory_item.hud_sprite;
+            item_text.text = inventory_cell.quantity.ToString();
+        }
+
+        item_text.canvasRenderer.SetAlpha(alpha);
+        item_image.canvasRenderer.SetAlpha(alpha);
     }
 
-    public void UpdateActiveSkills(System.Collections.Generic.List<HeroSkill> skill_list)
+    public void UpdateWeapon(Weapon weapon)
+    {
+        float alpha = 0;
+
+        if(weapon!=null)
+        {
+            alpha = 1;
+            weapon_image.sprite = weapon.HUD_sprite;
+        }
+
+        weapon_image.canvasRenderer.SetAlpha(alpha);
+    }
+
+    public void UpdateActiveSkills()
     {
         foreach (Image i in skill_images)
         {
@@ -73,12 +109,25 @@ public class HUD : MonoBehaviour
             i.canvasRenderer.SetAlpha(0);
         }
 
-        for (int i = 0; i < skill_list.Count; i++)
+        for (int i = 0; i < hero_playable.active_skills.Count; i++)
         {
-            HeroSkill s = skill_list[i];
+            HeroSkill s = hero_playable.active_skills[i];
 
             skill_images[i].sprite = s.HUD_sprite;
             skill_images[i].canvasRenderer.SetAlpha(1);
+        }
+    }
+
+    public void SetHeroReference (HeroPlayable v_hero_playable)
+    {
+        hero_playable = v_hero_playable;
+    }
+
+    public void ChangeActiveSkill(int skill_number)
+    {
+        if(hero_playable!=null)
+        {
+            hero_playable.NextSkill(skill_number);
         }
     }
     #endregion Red

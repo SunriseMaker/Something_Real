@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
-        __Attacks.PerformAttack(attack_data, Vector2.zero, _collider.bounds.center, GetInstanceID(), "");
+        __Attacks.PerformAttack(attack_data, Vector2.zero, _collider.bounds.center, GetInstanceID());
 
         switch (attack_data.behaviour)
         {

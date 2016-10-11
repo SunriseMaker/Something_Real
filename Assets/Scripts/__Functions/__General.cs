@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class __General
 {
@@ -28,11 +29,11 @@ public static class __General
         return result;
     }
 
-    public static GameObject InstantiatePrefab(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent_transform, bool deactivate)
+    public static GameObject InstantiatePrefab(GameObject prefab, string name, Vector3 position, Quaternion rotation, Transform parent_transform, bool deactivate)
     {
         GameObject instance = UnityEngine.Object.Instantiate(prefab, position, rotation) as GameObject;
 
-        instance.name = prefab.name;
+        instance.name = name;
 
         if (parent_transform!=null)
         {
@@ -52,5 +53,22 @@ public static class __General
         int random_value = UnityEngine.Random.Range(0, 2);
 
         return random_value > 0;
+    }
+
+    public static void LoadLevel(string level_tag)
+    {
+        LoadingScreen();
+        SceneManager.LoadScene(level_tag);
+    }
+
+    public static void LoadLevel(int level_index)
+    {
+        LoadingScreen();
+        SceneManager.LoadScene(level_index);
+    }
+
+    public static void LoadingScreen()
+    {
+        Object.Instantiate(GameData.Other.loading_screen);
     }
 }

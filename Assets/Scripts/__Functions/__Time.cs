@@ -3,6 +3,8 @@ using UnityEngine;
 
 public static class __Time
 {
+    private static float saved_time_scale = 1.0f;
+
     #region Convertion
     const int SECONDS_IN_HOUR = 3600;
 
@@ -54,23 +56,26 @@ public static class __Time
     #region PauseGame
     public static void PauseGame()
     {
-        GameData.Time.game_paused = true;
+        saved_time_scale = Time.timeScale;
         Time.timeScale = 0.0f;
+        GameData.Time.game_paused = true;
     }
 
     public static void UnpauseGame()
     {
+        Time.timeScale = saved_time_scale;
         GameData.Time.game_paused = false;
-        Time.timeScale = GameData.Time.game_speed;
     }
 
-    public static System.Collections.IEnumerator SlowMotion(float duration, float slow_koefficient)
+    public static System.Collections.IEnumerator SlowMotion(float slow_coefficient, float duration)
     {
-        Time.timeScale = GameData.Time.game_speed / slow_koefficient;
+        Time.timeScale = GameData.Time.normal_time_scale / slow_coefficient;
+        Time.fixedDeltaTime = Time.timeScale * GameData.Time.normal_fixed_delta_time;
 
-        yield return new WaitForSeconds(duration / slow_koefficient);
+        yield return new WaitForSeconds(duration);
 
-        Time.timeScale = GameData.Time.game_speed;
+        Time.timeScale = GameData.Time.normal_time_scale;
+        Time.fixedDeltaTime = GameData.Time.normal_fixed_delta_time;
     }
     #endregion PauseGame
 }

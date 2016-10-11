@@ -28,16 +28,22 @@ public sealed class PlayerController : MonoBehaviour
     [Range(0.1f, 1.0f)]
     public float hud_update_rate;
 
-    private Inventory _inventory;
-
     private Vector2 checkpoint_position;
+
+    #region Inventory
+    private Inventory _inventory;
+    private InventoryCell current_inventory_cell;
+    #endregion Inventory
 
     #region UserInput
     private float userinput_horizontal_look;
     private float userinput_vertical_look;
     private bool userinput_change_character;
     private bool userinput_change_weapon;
+    private int userinput_change_item;
+    bool userinput_change_item_axis_is_in_use;
     private bool userinput_submit;
+    private bool userinput_use;
     private bool userinput_cancel;
     private bool userinput_menu;
     #endregion UserInput
@@ -48,8 +54,6 @@ public sealed class PlayerController : MonoBehaviour
     {
         GameData.Singletons.main_camera.SetPlayerReference(this);
 
-        _inventory = GetComponent<Inventory>();
-
         checkpoint_position = transform.position;
 
         InstantiateHeroes();
@@ -58,6 +62,8 @@ public sealed class PlayerController : MonoBehaviour
         Debug.Assert(!available_heroes.Exists((a) => a == null), "ASSERTION FAILED: Unassigned entry in available_heroes collection.");
 
         InstantiateHUD();
+
+        InstantiateInventory();
     }
 
     private void Update()
@@ -67,55 +73,96 @@ public sealed class PlayerController : MonoBehaviour
     }
     #endregion MonoBehaviour
 
+    #region Inventory
+    public void AddInventoryItem(GameObject inventory_item_prefab, InventoryItem inventory_item_component, int quantity)
+    {
+        _inventory.AddItem(inventory_item_prefab, inventory_item_component, quantity);
+
+        if(current_inventory_cell==null)
+        {
+            SelectNextInventoryCell();
+        }
+    }
+
+    private void InstantiateInventory()
+    {
+        _inventory = new Inventory(transform);
+    }
+
+    private void SelectNextInventoryCell()
+    {
+        current_inventory_cell = _inventory.GetNextInventoryCell(current_inventory_cell, userinput_change_item);
+    }
+
+    private bool UseCurrentItemInCell()
+    {
+        bool used = false;
+
+        if (current_inventory_cell != null)
+        {
+            used = _inventory.UseItemInCell(ref current_inventory_cell, current_hero);
+        }
+
+        if (current_inventory_cell == null)
+        {
+            SelectNextInventoryCell();
+        }
+
+        return used;
+    }
+    #endregion Inventory
+
     #region Red
     private void InstantiateHUD()
     {
-        if (hud != null)
-        {
-            hud = Instantiate(hud);
-            hud.name = "HUD";
+        hud = Instantiate(hud);
+        hud.name = "HUD";
 
-            StartCoroutine(UpdateHUD(hud_update_rate));
-        }
-    }
-
-    private void TeleportHero(Vector2 destination)
-    {
-        if(current_hero != null)
-        {
-            current_hero.transform.position = destination;
-        }
-    }
-
-    private void ResurrectHero(float hp)
-    {
-        current_hero.Resurrect(hp);
-        TeleportHero(checkpoint_position);
-        GameData.Singletons.main_camera.FocusOnHero();
-    }
-
-    private bool CanChangeHero()
-    {
-        return !(current_hero.IsImmune() || current_hero.IsInvisible());
+        StartCoroutine(UpdateHUD(hud_update_rate));
     }
 
     private System.Collections.IEnumerator UpdateHUD(float rate)
     {
         while (true)
         {
-            if(current_hero!=null)
+            if (current_hero != null)
             {
                 hud.UpdateHealth(current_hero.CurrentHealth(), current_hero.MaxHealth());
 
                 hud.UpdateMana(current_hero.CurrentMana(), current_hero.MaxMana());
 
-                Sprite weapon_sprite = (current_hero.current_weapon == null ? null : current_hero.current_weapon.HUD_sprite);
+                hud.UpdateWeapon(current_hero.current_weapon);
 
-                hud.UpdateWeapon(weapon_sprite);
+                hud.UpdateItem(current_inventory_cell);
             }
 
             yield return new WaitForSeconds(rate);
         }
+    }
+
+    private void TeleportHero(HeroController hero, Vector2 destination)
+    {
+        if(hero!=null)
+        {
+            hero.transform.position = destination;
+        }
+    }
+
+    private void ResurrectHero(float hp)
+    {
+        current_hero.Resurrect(hp);
+        TeleportHero(current_hero, checkpoint_position);
+    }
+
+    private bool CanChangeHero()
+    {
+        return
+            Time.timeScale==GameData.Time.normal_time_scale
+            &&
+            !current_hero.IsImmune()
+            &&
+            !current_hero.IsInvisible()
+        ;
     }
 
     private void InstantiateHeroes()
@@ -125,7 +172,7 @@ public sealed class PlayerController : MonoBehaviour
 
         foreach (GameObject go in heroes_on_spawn)
         {
-            GameObject instance_gameobject = __General.InstantiatePrefab(go, Vector3.zero, Quaternion.Euler(Vector3.zero), transform, true);
+            GameObject instance_gameobject = __General.InstantiatePrefab(go, go.name, Vector3.zero, Quaternion.Euler(Vector3.zero), transform, true);
             instance_gameobject.transform.SetParent(heroes_group.transform, true);
             HeroController instance_herocontroller = instance_gameobject.GetComponent<HeroController>();
             available_heroes.Add(instance_herocontroller);
@@ -136,15 +183,10 @@ public sealed class PlayerController : MonoBehaviour
 
     private void SelectNextHero()
     {
-        Vector2 old_hero_forward_direction = HeroForwardDirection();
-        Vector2 old_hero_position = HeroPosition();
-
         int next_hero_index = 0;
 
         if (current_hero != null)
         {
-            current_hero.gameObject.SetActive(false);
-
             int current_hero_index = available_heroes.IndexOf(current_hero);
 
             if (current_hero_index != -1 && current_hero_index != available_heroes.Count - 1)
@@ -153,16 +195,29 @@ public sealed class PlayerController : MonoBehaviour
             }
         }
 
-        current_hero = available_heroes[next_hero_index];
+        HeroController next_hero = available_heroes[next_hero_index];
 
-        current_hero.gameObject.SetActive(true);
+        Vector2 hero_position;
 
-        TeleportHero(old_hero_position);
-
-        if (HeroForwardDirection() != old_hero_forward_direction)
+        if(current_hero==null)
         {
-            current_hero.TurnAround();
+            hero_position = transform.position;
         }
+        else
+        {
+            hero_position = current_hero.transform.position;
+
+            if (next_hero.ForwardDirection() != current_hero.ForwardDirection())
+            {
+                next_hero.TurnAround();
+            }
+
+            current_hero.gameObject.SetActive(false);
+        }
+
+        TeleportHero(next_hero, hero_position);
+        next_hero.gameObject.SetActive(true);
+        current_hero = next_hero;
     }
 
     private void PauseMenu()
@@ -190,7 +245,6 @@ public sealed class PlayerController : MonoBehaviour
                 modified = true;
             }
         }
-
         if (modified)
         {
             userinput_look = Math.Max(min_value, userinput_look);
@@ -200,12 +254,33 @@ public sealed class PlayerController : MonoBehaviour
 
     public void UserInput()
     {
-        LookInput(ref userinput_vertical_look, "Vertical", 0.05f, -0.35f, 0.35f);
-        userinput_change_character = Input.GetButtonDown("ChangeCharacter");
-        userinput_change_weapon = Input.GetButtonDown("ChangeWeapon");
+        LookInput(ref userinput_vertical_look, "VerticalLook", 0.05f, -0.35f, 0.35f);
+
         userinput_submit = Input.GetButtonDown("Submit");
+        userinput_use = Input.GetButtonDown("Use");
         userinput_cancel = Input.GetButtonDown("Cancel");
         userinput_menu = Input.GetButtonDown("Menu");
+
+        userinput_change_character = Input.GetButtonDown("ChangeCharacter");
+        userinput_change_weapon = Input.GetButtonDown("ChangeWeapon");
+
+        float axis_value_change_item = Input.GetAxis("ChangeItem");
+
+        userinput_change_item = 0;
+
+        if (axis_value_change_item==0)
+        {
+            userinput_change_item_axis_is_in_use = false;
+        }
+        else
+        {
+            if (!userinput_change_item_axis_is_in_use)
+            {
+                userinput_change_item = System.Math.Sign(axis_value_change_item);
+                
+                userinput_change_item_axis_is_in_use = true;
+            }
+        }
     }
 
     public void EntityControl()
@@ -243,6 +318,16 @@ public sealed class PlayerController : MonoBehaviour
             if (userinput_change_weapon)
             {
                 current_hero.SelectNextWeapon();
+            }
+
+            if(userinput_change_item!=0)
+            {
+                SelectNextInventoryCell();
+            }
+
+            if(userinput_use)
+            {
+                UseCurrentItemInCell();
             }
         }
     }

@@ -2,7 +2,7 @@
 
 public class HeroSkill : MonoBehaviour
 {
-    public enum SkillType { Attack, Defence}
+    public enum SkillType { Offensive, Defensive }
 
     #region Variables
     public SkillType skill_type;

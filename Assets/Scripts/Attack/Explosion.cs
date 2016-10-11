@@ -17,7 +17,7 @@ public class Explosion : MonoBehaviour
 
     private void Start()
     {
-        __Attacks.PerformAttack(attack_data, Vector2.zero, _collider.bounds.center, GetInstanceID(), "");
+        __Attacks.PerformAttack(attack_data, Vector2.zero, _collider.bounds.center, GetInstanceID());
     }
     #endregion MonoBehaviour
 }
