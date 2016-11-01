@@ -11,6 +11,22 @@ Standart Unity assets and free assets from different sources are used in this pr
 
 ## History of Changes
 
+###2016-11-01
+
+####1. Bugs fixed
+HUD skill icons now display properly when switching heroes.
+Werewolf combo attack issue.
+
+####2. Visual changes
+Main menu buttons centered.
+
+####3. Refactoring
+A lot of public variables became private with [SerializeField] attribute.
+Some classes were splitted into separate classes for more clear logic and convenience.
+Animator parameter values, Layer IDs, Layer mask IDs are now private static variables
+(These values are not changing during gameplay and belongs to classes, not an exemplars, less calculations)
+Static constructors are used.
+
 ###2016-10-11
 
 ####1. Skill switching

@@ -6,7 +6,7 @@ public class InventoryItem_Key : InventoryItem
     {
         bool used = false;
 
-        RaycastHit2D[] raycasts = Physics2D.CircleCastAll(hero.Position(), hero.Size().height, Vector3.zero, 1, GameData.LayerMasks.IntaractableObjects);
+        RaycastHit2D[] raycasts = Physics2D.CircleCastAll(hero.Position(), hero.Size().height, Vector3.zero, 1, LayerMaskID.IntaractableObjects);
 
         foreach(RaycastHit2D r in raycasts)
         {

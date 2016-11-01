@@ -2,9 +2,9 @@
 
 public class HeroSkill : MonoBehaviour
 {
+    #region Variables
     public enum SkillType { Offensive, Defensive }
 
-    #region Variables
     public SkillType skill_type;
 
     [Tooltip("True: Skill effect starts immediately on use.\nFalse: Skill effect is supposed to be triggered on particular animation frame.")]

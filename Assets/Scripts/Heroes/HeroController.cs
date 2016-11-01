@@ -6,13 +6,15 @@ public class HeroController : MonoBehaviour, iLiving, iMana
 {
     #region Variables
     const float DRAW_TIME = 2.0f;
+
     const float MIN_DISTANCE = 0.05f;
 
-    #region Other
+    #region Hero
     public string _name;
 
     [Tooltip("True: Leads the allies.\nFalse: Searching for leader ally and then follows.")]
-    public bool is_leader;
+    [SerializeField]
+    private bool is_leader;
 
     [Tooltip("Distance at which hero will mark target.")]
     [Range(0.0f, 20.0f)]
@@ -21,7 +23,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
     [HideInInspector]
     public string enemy_tag;
 
-    protected int instance_id;
+    private int instance_id;
 
     private Color native_sprite_color;
 
@@ -30,20 +32,23 @@ public class HeroController : MonoBehaviour, iLiving, iMana
     private PositionOffsets nearest_position_offsets;
 
     private ObjectSize size;
-    #endregion Other
+    #endregion Hero
 
     #region Weapons
     [Header("Weapons")]
     [Range(0.01f, 1.0f)]
-    public float accuracy;
+    [SerializeField]
+    private float accuracy;
 
-    public Vector2 weapon_offset;
+    [SerializeField]
+    private Vector2 weapon_offset;
 
     [Tooltip("List of weapon prefabs.")]
-    public List<GameObject> weapons_on_spawn;
+    [SerializeField]
+    private List<GameObject> weapons_on_spawn;
 
-    [HideInInspector]
-    public List<Weapon> available_weapons;
+    [SerializeField]
+    private List<Weapon> available_weapons;
 
     [HideInInspector]
     public Weapon current_weapon;
@@ -56,12 +61,13 @@ public class HeroController : MonoBehaviour, iLiving, iMana
     #region Skills
     [Header("Skills")]
     [Tooltip("List of skill prefabs.")]
-    public List<GameObject> skills_on_spawn;
+    [SerializeField]
+    private List<GameObject> skills_on_spawn;
 
     [HideInInspector]
     public List<HeroSkill> available_skills;
     
-    protected HeroSkill last_used_skill;
+    private HeroSkill last_used_skill;
 
     private Transform _skills_group;
 
@@ -77,12 +83,14 @@ public class HeroController : MonoBehaviour, iLiving, iMana
     public float initial_max_hp;
 
     [Range(0.0f, 3.0f)]
-    public float immune_on_hit_duration;
+    [SerializeField]
+    private float immune_on_hit_duration;
 
     [Range(0.0f, 3.0f)]
-    public float immune_on_resurrect_duration;
+    [SerializeField]
+    private float immune_on_resurrect_duration;
 
-    protected Health _health;
+    private Health _health;
     #endregion Health
 
     #region Mana
@@ -93,13 +101,13 @@ public class HeroController : MonoBehaviour, iLiving, iMana
     [Range(0.0f, 1000.0f)]
     public float initial_max_mp;
 
-    protected Mana _mana;
+    private Mana _mana;
     #endregion Mana
 
     #region Statuses
-    protected bool invisible;
+    private bool invisible;
 
-    protected bool layer_shift;
+    private bool layer_shift;
 
     [HideInInspector]
     public bool can_move;
@@ -110,7 +118,8 @@ public class HeroController : MonoBehaviour, iLiving, iMana
 
     #region Jumps
     [Header("Jumps")]
-    public int jump_count;
+    [SerializeField]
+    private int jump_count;
 
     public float jump_force;
 
@@ -139,7 +148,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
     #endregion Movement
 
     #region ComponentReferences
-    protected SpriteRenderer _renderer;
+    private SpriteRenderer _renderer;
 
     [HideInInspector]
     public Rigidbody2D _rigidbody;
@@ -147,34 +156,50 @@ public class HeroController : MonoBehaviour, iLiving, iMana
     [HideInInspector]
     public Animator _animator;
 
-    protected DestroyAfterDelay _destroy_after_delay;
+    private DestroyAfterDelay _destroy_after_delay;
     #endregion ComponentReferences
-
-    #region AnimatorParameters
-    protected int AP_velocity_x;
-    protected int AP_velocity_y;
-    protected int AP_movement_x;
-    protected int AP_movement_y;
-    protected int AP_sprint;
-    protected int AP_jump;
-    protected int AP_dead;
-    protected int AP_hitted;
-
-    private Vector2 APV_velocity_current;
-    private Vector2 APV_velocity_previous;
-    private Vector2 APV_movement_current;
-    private Vector2 APV_movement_previous;
-    #endregion AnimatorParameters
 
     #region Input
     private float input_axis_x;
     private float input_axis_y;
     private bool input_sprint;
     #endregion Input
+
+    #region AnimatorParametersValues
+    private Vector2 APV_velocity_current;
+    private Vector2 APV_velocity_previous;
+    private Vector2 APV_movement_current;
+    private Vector2 APV_movement_previous;
+    #endregion AnimatorParametersValues
+
+    #region AnimatorParameters
+    private static int AP_velocity_x;
+    private static int AP_velocity_y;
+    private static int AP_movement_x;
+    private static int AP_movement_y;
+    private static int AP_sprint;
+    private static int AP_jump;
+    private static int AP_dead;
+    private static int AP_hitted;
+    #endregion AnimatorParameters
+
+    static HeroController()
+    {
+        // These parameters must exist in every hero's animator
+        AP_velocity_x = Animator.StringToHash("Velocity_x");
+        AP_velocity_y = Animator.StringToHash("Velocity_y");
+        AP_movement_x = Animator.StringToHash("Movement_x");
+        AP_movement_y = Animator.StringToHash("Movement_y");
+        AP_sprint = Animator.StringToHash("Sprint");
+        AP_jump = Animator.StringToHash("Jump");
+        AP_dead = Animator.StringToHash("Dead");
+        AP_hitted = Animator.StringToHash("Hitted");
+    }
+
     #endregion Variables
 
     #region MonoBehaviour
-    protected virtual void Awake()
+    private void Awake()
     {
         #region Assertions
         string assertion_prefix = "ASSERTION FAILED: " + name;
@@ -193,25 +218,13 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         _destroy_after_delay = GetComponent<DestroyAfterDelay>();
         #endregion ComponentReferences
 
-        #region AnimatorParameters
-        // These parameters must exist in every hero's animator
-        AP_velocity_x = Animator.StringToHash("Velocity_x");
-        AP_velocity_y = Animator.StringToHash("Velocity_y");
-        AP_movement_x = Animator.StringToHash("Movement_x");
-        AP_movement_y = Animator.StringToHash("Movement_y");
-        AP_sprint = Animator.StringToHash("Sprint");
-        AP_jump = Animator.StringToHash("Jump");
-        AP_dead = Animator.StringToHash("Dead");
-        AP_hitted = Animator.StringToHash("Hitted");
-        #endregion AnimatorParameters
-
         #region Statuses
         can_move = true;
         can_attack = true;
         forward_direction = Vector2.right;
         #endregion Statuses
 
-        #region Other
+        #region Hero
         enemy_tag = tag == "Red" ? "Blue" : "Red";
 
         _health = new Health(initial_max_hp, initial_hp);
@@ -226,7 +239,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         Debug.Assert(available_skills.Count > 0, "Hero " + name + " has no skills.");
 
         InitializeWeapons();
-        #endregion Other
+        #endregion Hero
     }
 
     private void Update()
@@ -284,7 +297,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
                 // Checking for walls
 
                 //Debug.DrawRay(NearestPosition_Forward(), ForwardDirection() * MIN_DISTANCE, Color.red, DRAW_TIME);
-                if (Physics2D.Raycast(NearestPosition_Forward(), ForwardDirection(), MIN_DISTANCE, GameData.LayerMasks.Default).collider == null)
+                if (Physics2D.Raycast(NearestPosition_Forward(), ForwardDirection(), MIN_DISTANCE, LayerMaskID.Default).collider == null)
                 {
                     transform.Translate(speed * delta_time, 0, 0, Space.World);
                 }
@@ -339,11 +352,11 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         input_sprint = v_sprint;
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         // Landing nullifies the counter of jumps
         
-        if(Grounded(GameData.LayerMasks.Obstacles))
+        if(Grounded(LayerMaskID.Obstacles))
         {
             jump_number = 0;
         }
@@ -367,7 +380,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         }
     }
 
-    protected System.Collections.IEnumerator LayerShift(int from_layer, int to_layer, float seconds)
+    private System.Collections.IEnumerator LayerShift(int from_layer, int to_layer, float seconds)
     {
         layer_shift = true;
         gameObject.layer = to_layer;
@@ -378,9 +391,9 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         layer_shift = false;
     }
 
-    protected virtual void OnDeath()
+    private void OnDeath()
     {
-        gameObject.layer = GameData.Layers.Limbo;
+        gameObject.layer = LayerID.Limbo;
 
         jump_number = 0;
 
@@ -443,22 +456,22 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         Vector2 destination_point = foot_position + Vector2.up * probable_distance;
 
         //Debug.DrawLine(foot_position, destination_point, Color.red, DRAW_TIME);
-        RaycastHit2D hit = Physics2D.Linecast(foot_position, destination_point, GameData.LayerMasks.Default);
+        RaycastHit2D hit = Physics2D.Linecast(foot_position, destination_point, LayerMaskID.Default);
 
         if (hit.collider != null)
         {
-            StartCoroutine(LayerShift(GameData.Layers.Living, GameData.Layers.Void, TIME_IN_VOID));
+            StartCoroutine(LayerShift(LayerID.Living, LayerID.Void, TIME_IN_VOID));
         }
     }
     #endregion Red
 
     #region Animations
-    protected virtual void Animation_Death()
+    private void Animation_Death()
     {
         _animator.SetBool(AP_dead, true);
     }
 
-    protected virtual void Animation_Hit()
+    private void Animation_Hit()
     {
         _animator.SetTrigger(AP_hitted);
     }
@@ -712,9 +725,9 @@ public class HeroController : MonoBehaviour, iLiving, iMana
             Vector2 lowest_point = NearestPosition_BottomCenter();
 
             Instantiate(
-                GameData.Particles.jump,
-                new Vector3(lowest_point.x, lowest_point.y, GameData.Particles.jump.transform.position.z),
-                GameData.Particles.jump.transform.rotation
+                GamePrefabs.Particles.jump,
+                new Vector3(lowest_point.x, lowest_point.y, GamePrefabs.Particles.jump.transform.position.z),
+                GamePrefabs.Particles.jump.transform.rotation
                 );
 
             _animator.SetTrigger(AP_jump);
@@ -743,18 +756,18 @@ public class HeroController : MonoBehaviour, iLiving, iMana
 
         bool can_jump_down = false;
 
-        if (Grounded(GameData.LayerMasks.Default))
+        if (Grounded(LayerMaskID.Default))
         {
             Vector2 touchdown_point = Position_BottomCenter() + Vector2.down * Size().height;
 
             Debug.DrawRay(touchdown_point, Vector2.down * MIN_DISTANCE, Color.red, DRAW_TIME);
-            can_jump_down = Physics2D.Raycast(touchdown_point, Vector2.down, MIN_DISTANCE, GameData.LayerMasks.Obstacles).collider == null;
+            can_jump_down = Physics2D.Raycast(touchdown_point, Vector2.down, MIN_DISTANCE, LayerMaskID.Obstacles).collider == null;
         }
 
         if (can_jump_down)
         {
             _animator.SetTrigger(AP_jump);
-            StartCoroutine(LayerShift(GameData.Layers.Living, GameData.Layers.Void, 0.75f / _rigidbody.gravityScale));
+            StartCoroutine(LayerShift(LayerID.Living, LayerID.Void, 0.75f / _rigidbody.gravityScale));
         }
     }
     #endregion Abilities
@@ -889,7 +902,7 @@ public class HeroController : MonoBehaviour, iLiving, iMana
         _health.Resurrect(hp);
         _mana.AddMana(_mana.max_mp);
         _rigidbody.velocity = Vector2.zero;
-        gameObject.layer = GameData.Layers.Living;
+        gameObject.layer = LayerID.Living;
         Invulnerability(immune_on_resurrect_duration);
         _animator.SetBool(AP_dead, false);
     }

@@ -4,7 +4,8 @@ public class Regeneration : MonoBehaviour
 {
     #region Variables
     [Tooltip("Delay in seconds between two effects occur.\nThe lesser this number, the faster effect occurs.")]
-    public float pause_between_effects;
+    [SerializeField]
+    private float pause_between_effects;
 
     protected iHealth ihealth;
     #endregion Variables

@@ -4,16 +4,13 @@ using System.Linq;
 
 public class HeroPlayable : MonoBehaviour
 {
+    #region Variables
     const int ACTIVE_SKILLS_COUNT = 3;
 
-    #region Variables
-    [HideInInspector]
-    public HeroController hero;
+    private HeroController hero;
 
     [HideInInspector]
     public List<HeroSkill> active_skills;
-
-    private HUD hud;
 
     #region UserInput
     private float userinput_x;
@@ -30,30 +27,17 @@ public class HeroPlayable : MonoBehaviour
     protected virtual void Awake()
     {
         hero = GetComponent<HeroController>();
-    }
-
-    protected virtual void Start()
-    {
         InitializeActiveSkills();
-
-        GameObject hud_gameobject = GameObject.Find("HUD");
-
-        if (hud_gameobject != null)
-        {
-            hud = hud_gameobject.GetComponent<HUD>();
-            hud.SetHeroReference(this);
-            HUDUpdateActiveSkills();
-        }
     }
 
     private void OnEnable()
     {
-        HUDUpdateActiveSkills();
+        Singletons.hud.UpdateActiveSkills(this);
     }
 
     private void Update()
     {
-        if (!GameData.Time.game_paused && !hero.IsDead())
+        if (!GameData.GameTime.game_paused && !hero.IsDead())
         {
             UserInput();
             EntityControl();
@@ -111,7 +95,6 @@ public class HeroPlayable : MonoBehaviour
 
     private void InitializeActiveSkills()
     {
-        #region ActiveSkillsList
         active_skills = new List<HeroSkill>();
 
         int k = hero.available_skills.Count;
@@ -125,7 +108,6 @@ public class HeroPlayable : MonoBehaviour
         {
             active_skills.AddRange(hero.available_skills.Take(k));
         }
-        #endregion ActiveSkillsList
     }
 
     private void UseActiveSkill(int index)
@@ -136,14 +118,6 @@ public class HeroPlayable : MonoBehaviour
         }
         
         active_skills[index - 1].Use();
-    }
-
-    private void HUDUpdateActiveSkills()
-    {
-        if(hud!=null)
-        {
-            hud.UpdateActiveSkills();
-        }
     }
 
     public void NextSkill(int skill_number)
@@ -166,7 +140,7 @@ public class HeroPlayable : MonoBehaviour
 
         active_skills[skill_number] = hero.available_skills[next_skill_index];
 
-        HUDUpdateActiveSkills();
+        Singletons.hud.UpdateActiveSkills(this);
     }
     #endregion Red
 }

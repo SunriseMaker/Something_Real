@@ -3,9 +3,11 @@
 public class Door : MonoBehaviour
 {
     #region Variables
-    public string key_name;
+    [SerializeField]
+    private string key_name;
 
-    public bool locked;
+    [SerializeField]
+    private bool locked;
 
     private Portal _portal;
 

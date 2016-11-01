@@ -5,15 +5,24 @@ public class AnimationMovement : MonoBehaviour
     public enum OnFinishMovement { Stop, TeleportBack, MoveBack }
 
     #region Variables
-    public OnFinishMovement on_finish;
+    [SerializeField]
+    private OnFinishMovement on_finish;
 
-    public Vector2 distance;
-    public float time;
-    public float lifetime;
+    [SerializeField]
+    private Vector2 distance;
+
+    [SerializeField]
+    private float time;
+
+    [SerializeField]
+    private float lifetime;
 
     private Vector2 start;
+
     private Vector2 end;
+
     private Vector2 destination;
+
     private Vector2 translocation;
 
     private bool forward;
@@ -66,6 +75,8 @@ public class AnimationMovement : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
+        // Moving platform effect: any object which stays on the collider
+        // is moving in the same direction as the object with this component
         col.gameObject.transform.Translate(translocation * Time.deltaTime, Space.World);
     }
     #endregion MonoBehaviour

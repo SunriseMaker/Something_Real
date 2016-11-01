@@ -6,57 +6,52 @@ public class HUD : MonoBehaviour
     #region Variables
     #region Health
     [Header("Health")]
-    public Sprite health_slider_icon_alive;
-    public Sprite health_slider_icon_dead;
+    [SerializeField]
+    private Sprite health_slider_icon_alive;
 
+    [SerializeField]
+    private Sprite health_slider_icon_dead;
+
+    [SerializeField]
     private Image health_slider_handle_image;
+
+    [SerializeField]
     private Slider health_slider;
+
+    [SerializeField]
     private Text health_text;
     #endregion Health
 
     #region Mana
     [Header("Mana")]
+    [SerializeField]
     private Slider mana_slider;
+
+    [SerializeField]
     private Text mana_text;
     #endregion Mana
 
     #region Items
     [Header("Items")]
+    [SerializeField]
     private Image item_image;
+
+    [SerializeField]
     private Text item_text;
     #endregion Items
 
     #region Weapons
     [Header("Weapons")]
+    [SerializeField]
     private Image weapon_image;
     #endregion Weapons
 
     #region Skills
     [Header("Active Skills")]
-    public Image[] skill_images;
+    [SerializeField]
+    private Image[] skill_images;
     #endregion Skills
-
-    private HeroPlayable hero_playable;
-
     #endregion Variables
-
-    #region MonoBehaviour
-    private void Awake()
-    {
-        health_slider = transform.FindChild("HUD_Health_Slider").GetComponent<Slider>();
-        health_text = transform.FindChild("HUD_Health_Text").GetComponent<Text>();
-
-        mana_slider = transform.FindChild("HUD_Mana_Slider").GetComponent<Slider>();
-        mana_text = transform.FindChild("HUD_Mana_Text").GetComponent<Text>();
-
-        item_image = transform.FindChild("HUD_Item_Image").GetComponent<Image>();
-        item_text = transform.FindChild("HUD_Item_Text").GetComponent<Text>();
-
-        weapon_image = transform.FindChild("HUD_Weapon_Image").GetComponent<Image>();
-
-        health_slider_handle_image = health_slider.handleRect.GetComponent<Image>();
-    }
-    #endregion MonoBehaviour
 
     #region Red
     public void UpdateHealth(float current_health, float max_health)
@@ -101,7 +96,7 @@ public class HUD : MonoBehaviour
         weapon_image.canvasRenderer.SetAlpha(alpha);
     }
 
-    public void UpdateActiveSkills()
+    public void UpdateActiveSkills(HeroPlayable hero_playable)
     {
         foreach (Image i in skill_images)
         {
@@ -118,12 +113,7 @@ public class HUD : MonoBehaviour
         }
     }
 
-    public void SetHeroReference (HeroPlayable v_hero_playable)
-    {
-        hero_playable = v_hero_playable;
-    }
-
-    public void ChangeActiveSkill(int skill_number)
+    public void ChangeActiveSkill(HeroPlayable hero_playable, int skill_number)
     {
         if(hero_playable!=null)
         {

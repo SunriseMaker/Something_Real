@@ -5,24 +5,15 @@ using System;
 public sealed class PlayerController : MonoBehaviour
 {
     #region Variables
-    [Header("Heroes")]
-    public List<GameObject> heroes_on_spawn = new List<GameObject>();
+    const string HEROES_GROUP = "Heroes";
 
-    [HideInInspector]
+    [Header("Heroes")]
+    [SerializeField]
+    private List<GameObject> heroes_on_spawn = new List<GameObject>();
+
     private List<HeroController> available_heroes = new List<HeroController>();
 
-    [HideInInspector]
-    public HeroController current_hero;
-
-    [Header("Pause menu")]
-    [Tooltip("Pause menu prefab.")]
-
-    const string HEROES_GROUP = "Heroes";
-    public GameObject pause_menu;
-
-    [Header("HUD")]
-    [Tooltip("HUD prefab.")]
-    public HUD hud;
+    private HeroController current_hero;
 
     [Tooltip("Time in seconds between updates of HUD elements.")]
     [Range(0.1f, 1.0f)]
@@ -52,7 +43,7 @@ public sealed class PlayerController : MonoBehaviour
     #region MonoBehaviour
     private void Start()
     {
-        GameData.Singletons.main_camera.SetPlayerReference(this);
+        Singletons.main_camera.SetPlayerReference(this);
 
         checkpoint_position = transform.position;
 
@@ -61,7 +52,7 @@ public sealed class PlayerController : MonoBehaviour
         Debug.Assert(available_heroes.Count != 0, "ASSERTION FAILED: available_heroes collection is empty.");
         Debug.Assert(!available_heroes.Exists((a) => a == null), "ASSERTION FAILED: Unassigned entry in available_heroes collection.");
 
-        InstantiateHUD();
+        StartCoroutine(UpdateHUD(hud_update_rate));
 
         InstantiateInventory();
     }
@@ -113,27 +104,19 @@ public sealed class PlayerController : MonoBehaviour
     #endregion Inventory
 
     #region Red
-    private void InstantiateHUD()
-    {
-        hud = Instantiate(hud);
-        hud.name = "HUD";
-
-        StartCoroutine(UpdateHUD(hud_update_rate));
-    }
-
     private System.Collections.IEnumerator UpdateHUD(float rate)
     {
         while (true)
         {
             if (current_hero != null)
             {
-                hud.UpdateHealth(current_hero.CurrentHealth(), current_hero.MaxHealth());
+                Singletons.hud.UpdateHealth(current_hero.CurrentHealth(), current_hero.MaxHealth());
 
-                hud.UpdateMana(current_hero.CurrentMana(), current_hero.MaxMana());
+                Singletons.hud.UpdateMana(current_hero.CurrentMana(), current_hero.MaxMana());
 
-                hud.UpdateWeapon(current_hero.current_weapon);
+                Singletons.hud.UpdateWeapon(current_hero.current_weapon);
 
-                hud.UpdateItem(current_inventory_cell);
+                Singletons.hud.UpdateItem(current_inventory_cell);
             }
 
             yield return new WaitForSeconds(rate);
@@ -157,7 +140,7 @@ public sealed class PlayerController : MonoBehaviour
     private bool CanChangeHero()
     {
         return
-            Time.timeScale==GameData.Time.normal_time_scale
+            Time.timeScale==GameData.GameTime.normal_time_scale
             &&
             !current_hero.IsImmune()
             &&
@@ -222,7 +205,7 @@ public sealed class PlayerController : MonoBehaviour
 
     private void PauseMenu()
     {
-        Instantiate(pause_menu);
+        Instantiate(GamePrefabs.Other.pause_menu);
     }
 
     private void LookInput(ref float userinput_look, string axis_name, float accuracy, float min_value, float max_value)
@@ -285,7 +268,7 @@ public sealed class PlayerController : MonoBehaviour
 
     public void EntityControl()
     {
-        if (GameData.Time.game_paused)
+        if (GameData.GameTime.game_paused)
         {
             return;
         }

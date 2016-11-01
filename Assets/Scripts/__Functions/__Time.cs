@@ -58,24 +58,24 @@ public static class __Time
     {
         saved_time_scale = Time.timeScale;
         Time.timeScale = 0.0f;
-        GameData.Time.game_paused = true;
+        GameData.GameTime.game_paused = true;
     }
 
     public static void UnpauseGame()
     {
         Time.timeScale = saved_time_scale;
-        GameData.Time.game_paused = false;
+        GameData.GameTime.game_paused = false;
     }
 
     public static System.Collections.IEnumerator SlowMotion(float slow_coefficient, float duration)
     {
-        Time.timeScale = GameData.Time.normal_time_scale / slow_coefficient;
-        Time.fixedDeltaTime = Time.timeScale * GameData.Time.normal_fixed_delta_time;
+        Time.timeScale = GameData.GameTime.normal_time_scale / slow_coefficient;
+        Time.fixedDeltaTime = Time.timeScale * GameData.GameTime.normal_fixed_delta_time;
 
         yield return new WaitForSeconds(duration);
 
-        Time.timeScale = GameData.Time.normal_time_scale;
-        Time.fixedDeltaTime = GameData.Time.normal_fixed_delta_time;
+        Time.timeScale = GameData.GameTime.normal_time_scale;
+        Time.fixedDeltaTime = GameData.GameTime.normal_fixed_delta_time;
     }
     #endregion PauseGame
 }

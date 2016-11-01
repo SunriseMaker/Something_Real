@@ -12,7 +12,7 @@ public static class __Targets
         Vector2 attacker_forward_direction = seeker.ForwardDirection();
 
         // Limiting objects quantity to minimize calculations by testing the area only in attacker's sight distance
-        Collider2D[] objects_in_radius = Physics2D.OverlapCircleAll(attacker_position, seeker.sight, GameData.LayerMasks.Targets);
+        Collider2D[] objects_in_radius = Physics2D.OverlapCircleAll(attacker_position, seeker.sight, LayerMaskID.Targets);
 
         var targets =
             from
@@ -60,7 +60,7 @@ public static class __Targets
             // >> The colliders in the array are sorted in order of distance from the origin point.
 
             RaycastHit2D[] objects_in_sight_line =
-                Physics2D.RaycastAll(attacker_position, __Targets.TargetDirectionNormalized(attacker_position, t.living.Position()), seeker.sight, GameData.LayerMasks.Targets);
+                Physics2D.RaycastAll(attacker_position, __Targets.TargetDirectionNormalized(attacker_position, t.living.Position()), seeker.sight, LayerMaskID.Targets);
 
             foreach (RaycastHit2D r in objects_in_sight_line)
             {

@@ -3,8 +3,11 @@
 public class AnimationRotation : MonoBehaviour
 {
     #region Variables
-    public Vector3 rotation_angle;
-    public bool destroy_component_on_collision;
+    [SerializeField]
+    private Vector3 rotation_angle;
+
+    [SerializeField]
+    private bool destroy_component_on_collision;
     #endregion Variables
 
     #region MonoBehaviour

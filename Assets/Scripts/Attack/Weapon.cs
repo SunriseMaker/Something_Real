@@ -19,18 +19,22 @@ public sealed class Weapon : MonoBehaviour
 
     private bool can_attack;
 
-    private int AP_Attack;
-
     private int owner_instance_id;
 
     private Rigidbody2D owner_rigidbody;
+
+    private static int AP_Attack;
+
+    static Weapon()
+    {
+        AP_Attack = Animator.StringToHash("Attack");
+    }
     #endregion Variables
 
     #region MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        AP_Attack = Animator.StringToHash("Attack");
 
         attack_data = projectile_weapon ? GetComponent<ProjectileAttackData>() : GetComponent<AttackData>();
         can_attack = true;

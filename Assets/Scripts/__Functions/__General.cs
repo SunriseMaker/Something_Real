@@ -69,6 +69,6 @@ public static class __General
 
     public static void LoadingScreen()
     {
-        Object.Instantiate(GameData.Other.loading_screen);
+        Object.Instantiate(GamePrefabs.Other.loading_screen);
     }
 }

@@ -4,14 +4,16 @@ using UnityStandardAssets.ImageEffects;
 
 public class PlayerCamera : MonoBehaviour
 {
+    #region Variables
     const float TARGETTING_ACCURACY = 0.05f;
 
-    #region Variables
     [Range(0.0f, 0.5f)]
-    public float camera_offset_x;
+    [SerializeField]
+    private float camera_offset_x;
 
     [Range(-0.5f, 0.5f)]
-    public float camera_offset_y;
+    [SerializeField]
+    private float camera_offset_y;
 
     private Camera _camera;
 

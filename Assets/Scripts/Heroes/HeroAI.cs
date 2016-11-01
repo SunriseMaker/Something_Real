@@ -4,47 +4,55 @@ using System.Collections.Generic;
 
 public class HeroAI : MonoBehaviour
 {
+    #region Variables
     protected delegate System.Collections.IEnumerator TriggerStatus(float delay);
 
     const float PAUSE_BETWEEN_SEARCHES = 1.0f;
-    
+
     const float JUMP_IF_DISTANCE_X = 2.5f;
 
     const float JUMP_IF_DISTANCE_Y = 2.5f;
 
     const float CLOSEST_DISTANCE = 1.0f;
 
-    #region Variables
     [Header("Behaviour")]
     [Tooltip("Stands still, doesn't move")]
-    public bool idle;
+    [SerializeField]
+    private bool idle;
 
-    public bool mark_target_only_if_in_gaze_direction;
+    [SerializeField]
+    private bool mark_target_only_if_in_gaze_direction;
 
     [Range(0.0f, 100.0f)]
     [Tooltip("Percentage of health which determines that it's level is critical.")]
-    public float critical_hp_percent;
+    [SerializeField]
+    private float critical_hp_percent;
 
     protected float critical_hp;
 
     [Header("Distance")]
     [Range(0.0f, 15.0f)]
     [Tooltip("Maximum distance at which hero will attack enemy.")]
-    public float attack_distance;
+    [SerializeField]
+    private float attack_distance;
 
     [Tooltip("Hero will loose target at this distance.")]
     [Range(5.0f, 50.0f)]
-    public float lost_target_distance;
+    [SerializeField]
+    private float lost_target_distance;
 
     [Header("Timing")]
     [Range(0.0f, 1.0f)]
-    public float delay_before_attack;
+    [SerializeField]
+    private float delay_before_attack;
 
     [Range(0.1f, 1.0f)]
-    public float delay_between_attacks;
+    [SerializeField]
+    private float delay_between_attacks;
 
     [Range(0.1f, 1.0f)]
-    public float delay_between_jumps;
+    [SerializeField]
+    private float delay_between_jumps;
 
     protected HeroController hero;
 
@@ -135,7 +143,7 @@ public class HeroAI : MonoBehaviour
 
             if(enemy!=null)
             {
-                Emotion(GameData.Emotions.alertness);
+                Emotion(GamePrefabs.Emotions.alertness);
             }
         }
 
@@ -159,13 +167,13 @@ public class HeroAI : MonoBehaviour
 
                 if (leader != null)
                 {
-                    Emotion(GameData.Emotions.happiness);
+                    Emotion(GamePrefabs.Emotions.happiness);
                 }
             }
 
             if(leader != null)
             {
-                if (CheckTarget(ref leader, hero.tag, true, false, false, GameData.Emotions.sadness))
+                if (CheckTarget(ref leader, hero.tag, true, false, false, GamePrefabs.Emotions.sadness))
                 {
                     Pursue(leader, false);
                     return;
@@ -219,7 +227,7 @@ public class HeroAI : MonoBehaviour
 
         if (lost_if_invisible && enemy.IsInvisible())
         {
-            Emotion(GameData.Emotions.surprise);
+            Emotion(GamePrefabs.Emotions.surprise);
             enemy = null;
             return false;
         }
@@ -239,9 +247,9 @@ public class HeroAI : MonoBehaviour
         //Debug.DrawRay(nearest_position_forward, forward_down_direction, Color.blue, 2.0f);
 
         if (
-            Physics2D.Raycast(nearest_position_forward, forward_down_direction, hero_height, GameData.LayerMasks.Obstacles).collider == null
+            Physics2D.Raycast(nearest_position_forward, forward_down_direction, hero_height, LayerMaskID.Obstacles).collider == null
             ||
-            Physics2D.Raycast(nearest_position_forward, forward_direction, 1.0f, GameData.LayerMasks.Obstacles).collider != null
+            Physics2D.Raycast(nearest_position_forward, forward_direction, 1.0f, LayerMaskID.Obstacles).collider != null
             )
         {
             roam_direction *= -1;
@@ -280,7 +288,7 @@ public class HeroAI : MonoBehaviour
                 Vector2 ray_direction;
                 float ray_length;
 
-                if (hero.Grounded(GameData.LayerMasks.Obstacles))
+                if (hero.Grounded(LayerMaskID.Obstacles))
                 {
                     ray_direction= hero.ForwardDirection() + Vector2.down;
                     ray_length = hero_height;
@@ -292,7 +300,7 @@ public class HeroAI : MonoBehaviour
                 }
 
                 //Debug.DrawRay(hero_position, ray_direction * ray_length, Color.blue, 2.0f);
-                if (Physics2D.Raycast(hero_position, ray_direction, ray_length, GameData.LayerMasks.Obstacles).collider == null)
+                if (Physics2D.Raycast(hero_position, ray_direction, ray_length, LayerMaskID.Obstacles).collider == null)
                 {
                     Jump();
                 }

@@ -11,11 +11,11 @@ public static class __Attacks
 
         if (attack_data.radius > 0)
         {
-            raycasts = Physics2D.CircleCastAll(attacker_position, attack_data.radius, aim, attack_data.range, GameData.LayerMasks.Targets);
+            raycasts = Physics2D.CircleCastAll(attacker_position, attack_data.radius, aim, attack_data.range, LayerMaskID.Targets);
         }
         else
         {
-            raycasts = Physics2D.RaycastAll(attacker_position, aim, attack_data.range, GameData.LayerMasks.Targets);
+            raycasts = Physics2D.RaycastAll(attacker_position, aim, attack_data.range, LayerMaskID.Targets);
         }
 
         var q1 = from q in raycasts

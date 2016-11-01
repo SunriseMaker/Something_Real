@@ -2,7 +2,8 @@
 
 public sealed class DestroyAfterDelay : MonoBehaviour
 {
-    public float delay;
+    [SerializeField]
+    private float delay;
 	
 	private void Start()
     {

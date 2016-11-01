@@ -20,7 +20,7 @@ public class Pickup : MonoBehaviour
         if (_player != null)
         {
             _player.AddInventoryItem(inventory_item_prefab, inventory_item_component, quantity);
-            AudioSource.PlayClipAtPoint(GameData.SFX.pickup, transform.position);
+            AudioSource.PlayClipAtPoint(GamePrefabs.SFX.pickup, transform.position);
             Destroy(gameObject);
         }
     }

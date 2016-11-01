@@ -3,9 +3,11 @@
 public class ExplosiveArrow : Projectile
 {
     #region Variables
-    public GameObject explosion_prefab;
+    [SerializeField]
+    private GameObject explosion_prefab;
 
-    public Vector2 explosion_scale;
+    [SerializeField]
+    private Vector2 explosion_scale;
     #endregion Variables
 
     #region Red
@@ -17,6 +19,5 @@ public class ExplosiveArrow : Projectile
         GameObject _instance = Instantiate(explosion_prefab, position, Quaternion.Euler(Vector3.zero)) as GameObject;
         _instance.transform.localScale = new Vector3(explosion_scale.x, explosion_scale.y, 1.0f);
     }
-    
     #endregion Red
 }

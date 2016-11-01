@@ -19,7 +19,7 @@ public class HeroSkill_SlowMotion : HeroSkill
 
         float real_time_duration = effect_duration / world_slow;
         StartCoroutine(__Time.SlowMotion(world_slow, real_time_duration));
-        StartCoroutine(GameData.Singletons.main_camera.TwirlEffect(0.5f, 0.025f, 360f));
+        StartCoroutine(Singletons.main_camera.TwirlEffect(0.5f, 0.025f, 360f));
     }
 
     protected override float CalcDelay()

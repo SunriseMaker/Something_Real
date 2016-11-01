@@ -2,15 +2,18 @@
 
 public class Portal : MonoBehaviour
 {
+    #region Variables
     public enum SpawnSide { Up, Down, Left, Right }
 
-    #region Variables
-    public SpawnSide spawn_side;
+    [SerializeField]
+    private SpawnSide spawn_side;
 
-    public GameObject linked_portal;
+    [SerializeField]
+    private GameObject linked_portal;
 
     [HideInInspector]
     public Collider2D _collider;
+
     private Collider2D linked_portal_collider;
 
     private SpawnSide linked_portal_spawn_side;

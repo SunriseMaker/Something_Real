@@ -2,13 +2,19 @@
 
 public sealed class HeroSpawnPoint : MonoBehaviour
 {
-    public GameObject hero_prefab;
+    #region Variables
+    [SerializeField]
+    private GameObject hero_prefab;
+
+    [SerializeField]
+    private bool spawn_on_awake;
+
     private HeroController spawned_hero;
 
-    public bool spawn_on_awake;
-
     public float interval;
+    #endregion Variables
 
+    #region MonoBehaviour
     private void Awake()
     {
         if(spawn_on_awake)
@@ -18,7 +24,9 @@ public sealed class HeroSpawnPoint : MonoBehaviour
 
         StartCoroutine(crSpawn());
     }
+    #endregion MonoBehaviour
 
+    #region Red
     private System.Collections.IEnumerator crSpawn()
     {
         while(true)
@@ -31,9 +39,10 @@ public sealed class HeroSpawnPoint : MonoBehaviour
         }
     }
 
-    public void Spawn()
+    private void Spawn()
     {
         GameObject hero_game_object = Instantiate(hero_prefab, transform.position, hero_prefab.transform.rotation) as GameObject;
         spawned_hero = hero_game_object.GetComponent<HeroController>();
     }
+    #endregion Red
 }

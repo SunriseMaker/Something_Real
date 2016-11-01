@@ -3,10 +3,11 @@
 public sealed class ManaRegeneration : Regeneration
 {
     #region Variables
-    private iMana _mana;
-
     [Tooltip("How much MP will be restored at a time.")]
-    public float mp_amount;
+    [SerializeField]
+    private float mp_amount;
+
+    private iMana _mana;
     #endregion Variables
 
     #region MonoBehaviour

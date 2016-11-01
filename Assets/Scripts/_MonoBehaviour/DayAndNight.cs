@@ -39,7 +39,7 @@ public class DayAndNight : MonoBehaviour
         float light_intensity = 1.0f;
         Color light_color = Color.green;
 
-        int seconds = __Time.HMS_to_Seconds(GameData.Time.now);
+        int seconds = __Time.HMS_to_Seconds(GameData.GameTime.now);
 
         foreach (LightInterval li in intervals)
         {
@@ -57,9 +57,9 @@ public class DayAndNight : MonoBehaviour
 
     public string Info()
     {
-        string now_info = __Time.Time24(GameData.Time.now);
+        string now_info = __Time.Time24(GameData.GameTime.now);
 
-        string speed_info = GameData.Time.time_speed.ToString();
+        string speed_info = GameData.GameTime.time_speed.ToString();
 
         string info =
             "Now: " + now_info + "\n" +

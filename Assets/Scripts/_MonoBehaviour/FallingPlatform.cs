@@ -2,24 +2,32 @@
 
 public class FallingPlatform : MonoBehaviour
 {
+    #region Variables
     public enum FallingPlatformBehaviour { BringBack, Deactivate }
 
-    #region Variables
-    public FallingPlatformBehaviour _behaviour;
+    [SerializeField]
+    private FallingPlatformBehaviour _behaviour;
 
-    public float falling_time;
-    public float trembling_time;
+    [SerializeField]
+    private float falling_time;
+
+    [SerializeField]
+    private float trembling_time;
 
     private Animator _animator;
 
-    int AP_Trembling;
-    int AP_Falling;
-    int AP_Idle;
+    private int AP_Trembling;
+
+    private int AP_Falling;
+
+    private int AP_Idle;
 
     private bool is_falling;
+
     private float falling_timer;
 
     private bool is_trembling;
+
     private float trembling_timer;
 
     private Vector2 initial_position;

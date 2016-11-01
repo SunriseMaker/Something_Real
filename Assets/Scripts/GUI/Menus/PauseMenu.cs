@@ -8,11 +8,11 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         __Time.PauseGame();
-        GameData.Singletons.main_camera.BlurEffect(true);
+        Singletons.main_camera.BlurEffect(true);
 
         Button first_button = __General.FindChildRecursively(transform, "Button_ResumeGame").GetComponent<Button>();
         first_button.Select();
-        first_button.OnSelect(new UnityEngine.EventSystems.BaseEventData(GameData.Singletons.event_system));
+        first_button.OnSelect(new UnityEngine.EventSystems.BaseEventData(Singletons.event_system));
     }
 
     private void Update()
@@ -34,7 +34,7 @@ public class PauseMenu : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        GameData.Singletons.main_camera.BlurEffect(false);
+        Singletons.main_camera.BlurEffect(false);
         __Time.UnpauseGame();
         Destroy(gameObject);
     }
